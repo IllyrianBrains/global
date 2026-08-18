@@ -1,0 +1,54 @@
+---
+import { cities } from '../data/cities';
+
+---
+<section class="section community-map-section" id="community">
+  <div class="container">
+    <div class="network-proof">
+      <div class="network-proof-copy">
+        <p class="eyebrow">Rrjeti Illyrian Brains</p>
+        <h2>Besuar nga mijëra profesionistë në mbarë botën.</h2>
+        <p>Prej vitesh, takimet e IB krijojnë hapësira ku shqiptarët njihen, mblidhen dhe shkëmbejnë dije. Organizatorët dhe komunitetet lokale e mbajnë këtë rrjet në lëvizje.</p>
+      </div>
+      <div class="network-stats" aria-label="Statistikat e rrjetit Illyrian Brains">
+        <div><strong>50+</strong><span>Qytete me evente</span></div>
+        <div><strong>500+</strong><span>Evente dhe Happy Hours</span></div>
+        <div><strong>5000+</strong><span>Pjesëmarrës</span></div>
+        <div><strong>100+</strong><span>Mikro-komunitete</span></div>
+      </div>
+    </div>
+
+    <div class="community-map-heading">
+      <div><p class="eyebrow">Komuniteti</p><h2>Qytetet e rrjetit.</h2></div>
+      <p>Një pamje e qyteteve nga vijnë njerëzit e komunitetit tonë dhe profesionistët që do t’i bashkohen IB Global në Tiranë.</p>
+    </div>
+
+    <div class="community-map-layout">
+      <div id="community-map" data-cities={JSON.stringify(cities)} aria-label="Harta e qyteteve të Illyrian Brains"></div>
+    </div>
+  </div>
+  <script is:inline src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script is:inline>
+    const mapElement = document.querySelector('#community-map');
+    if (mapElement && window.L) {
+      const cityData = JSON.parse(mapElement.dataset.cities || '[]');
+      const map = L.map(mapElement, { scrollWheelZoom: true, doubleClickZoom: true, touchZoom: true, zoomControl: true }).setView([44, 8], 3);
+      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 18,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      }).addTo(map);
+
+      const markers = cityData.map((city) => {
+        const marker = L.circleMarker([city.lat, city.lng], {
+          radius: 15, color: '#744761', weight: 1, opacity: .58, fillColor: '#744761', fillOpacity: .24
+        })
+          .bindTooltip(`<div class="map-city-tooltip"><strong>${city.city}</strong><span>${city.country}</span></div>`, { direction: 'top', offset: [0, -10], opacity: .96 })
+          .bindPopup(`<div class="map-popup"><strong>${city.city}</strong><span>${city.country}</span><small>Pjesë e komunitetit Illyrian Brains</small></div>`);
+        marker.addTo(map);
+        return { city, marker };
+      });
+      if (markers.length) map.fitBounds(L.featureGroup(markers.map(({ marker }) => marker)).getBounds(), { padding: [34, 34] });
+
+    }
+  </script>
+</section>

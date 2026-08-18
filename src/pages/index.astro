@@ -1,0 +1,170 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import CommunityMap from '../components/CommunityMap.astro';
+import SectionTitle from '../components/SectionTitle.astro';
+import Footer from '../components/Footer.astro';
+import { conference, workshops } from '../data/conference';
+
+const saturdayEvents = [
+  { time: '10:00–13:30', title: 'Takimi i Asamblesë', text: 'Sesioni i brendshëm i punës ku organizatorët përcaktojnë prioritetet, përgjegjësitë dhe hapat e ardhshëm të rrjetit.', agenda: ['Përditësimi nga Bordi', 'Raportimi i qyteteve', 'Iniciativat dhe vendimet'], image: '/assets/inst_starting.png', restricted: true, href: '/organizers/' },
+  { time: '18:00–19:30', title: 'Eventi kryesor', text: 'Një sesion publik në DUA kushtuar vizionit, zhvillimit dhe produktit të Illyrian Brains, me një folës të ftuar.', agenda: ['Hapja e eventit', 'Fjala kryesore', 'Vizioni dhe produkti i IB'], image: '/assets/inst_global_serious.png', location: 'Dua', query: 'Dua+Space+Tirana' },
+  { time: '19:30 e tutje', title: 'Darkë dhe njohje profesionale', text: 'Mbrëmja përmbyllëse te Oborri krijon hapësirë për biseda, lidhje të reja dhe mundësi konkrete bashkëpunimi.', agenda: ['Darkë bufe', 'Njohje dhe diskutime', 'Muzikë dhe komunitet'], image: '/assets/inst_global.png', location: 'Oborri', query: 'Oborri+Tirana' },
+];
+---
+<BaseLayout title={`${conference.name} · ${conference.city}`}>
+  <Header />
+  <main>
+    <Hero />
+
+    <section class="section day-section friday-section" id="program">
+      <div class="container day-content">
+          <header class="day-heading">
+            <div class="day-heading-copy"><p class="day-date"><span>E premte</span>18 Shtator</p><h2>Mbrëmja e mirëseardhjes</h2><p>Hapja joformale e IB Global, krijuar për takimet e para, prezantimet dhe njohjen mes pjesëmarrësve.</p></div>
+          </header>
+          <article class="event-list-card friday-event">
+            <div class="event-list-copy">
+              <div class="card-meta"><span>Mbrëmje</span><small><a class="location-link" href="https://www.google.com/maps/search/?api=1&query=Dua+Space+Tirana" target="_blank" rel="noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6-5.2 6-11a6 6 0 1 0-12 0c0 5.8 6 11 6 11Z"/><circle cx="12" cy="10" r="2"/></svg>Dua</a></small></div>
+              <h3>Pritja e mirëseardhjes</h3>
+              <p>Një mjedis i hapur për t’u prezantuar, për të takuar anëtarët e rinj dhe për të nisur fundjavën me komunitetin.</p>
+              <ul class="mini-agenda"><li>Mirëseardhja</li><li>Prezantime të shkurtra</li><li>Biseda të lira</li></ul>
+            </div>
+            <div class="event-image event-image-collage">
+              <img src="/assets/inst_happyhour.png" alt="Pjesëtarë të komunitetit gjatë një mbrëmjeje të Illyrian Brains" loading="lazy" />
+              <img src="/assets/inst_global.png" alt="Anëtarë të rrjetit duke biseduar gjatë një eventi" loading="lazy" />
+              <img src="/assets/inst_meetup.png" alt="Pjesëmarrës të Illyrian Brains të mbledhur së bashku" loading="lazy" />
+            </div>
+          </article>
+      </div>
+    </section>
+
+    <section class="section day-section saturday-section" id="saturday">
+      <div class="container day-content">
+          <header class="day-heading">
+            <div class="day-heading-copy"><p class="day-date"><span>E shtunë</span>19 Shtator</p><h2>Rrjeti, vizioni dhe bashkëpunimi</h2><p>Një ditë e strukturuar nga puna e Asamblesë te eventi kryesor dhe bisedat që vazhdojnë gjatë mbrëmjes.</p></div>
+          </header>
+          <div class="saturday-grid stacked-cards">
+            {saturdayEvents.map((event) => (
+              <article class:list={['event-card', { 'organizers-event': event.restricted }]} tabindex="0">
+                <div class="event-card-copy">
+                  <div class="card-meta">
+                    <span>{event.time}</span>
+                    {event.restricted ? <small class="restricted-label">Vetëm organizatorët</small> : event.location ? <small><a class="location-link" href={`https://www.google.com/maps/search/?api=1&query=${event.query}`} target="_blank" rel="noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6-5.2 6-11a6 6 0 1 0-12 0c0 5.8 6 11 6 11Z"/><circle cx="12" cy="10" r="2"/></svg>{event.location}</a></small> : null}
+                  </div>
+                  <h3>{event.href ? <a href={event.href}>{event.title} ↗</a> : event.title}</h3>
+                  <p>{event.text}</p>
+                  <ul class="mini-agenda">{event.agenda.map((item) => <li>{item}</li>)}</ul>
+                </div>
+                <div class="event-image"><img src={event.image} alt={`Pamje nga ${event.title.toLowerCase()}`} loading="lazy" /></div>
+              </article>
+            ))}
+          </div>
+      </div>
+    </section>
+
+    <section class="section day-section sunday-section" id="sunday">
+      <div class="container day-content">
+          <header class="day-heading">
+            <div class="day-heading-copy"><p class="day-date"><span>E diel</span>20 Shtator</p><h2>Sesione profesionale</h2><p>Takime tematike me fokus te shkëmbimi i ekspertizës, diskutimi i sfidave dhe krijimi i bashkëpunimeve të reja.</p></div>
+          </header>
+          <div class="professional-grid stacked-cards">
+            {workshops.map((workshop, index) => (
+              <article class="professional-card" tabindex="0"><div class="event-card-copy"><div class="card-meta"><span>{workshop.time}</span><small>{workshop.type} · <a class="location-link" href="https://www.google.com/maps/search/?api=1&query=Dua+Space+Tirana" target="_blank" rel="noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6-5.2 6-11a6 6 0 1 0-12 0c0 5.8 6 11 6 11Z"/><circle cx="12" cy="10" r="2"/></svg>Dua</a></small></div><h3>{workshop.title}</h3><p>{workshop.text}</p><ul class="mini-agenda">{workshop.agenda.map((item) => <li>{item}</li>)}</ul></div><div class="event-image"><img src={index === 0 ? '/assets/inst_workshop.png' : '/assets/inst_meetup.png'} alt={index === 0 ? 'Pjesëmarrës gjatë një punëtorie të Illyrian Brains' : 'Profesionistë gjatë një takimi të Illyrian Brains'} loading="lazy" /></div></article>
+            ))}
+          </div>
+      </div>
+    </section>
+
+    <section class="section venue-section" id="venue">
+      <div class="container venue-layout venue">
+        <div class="venue-copy">
+          <SectionTitle kicker="Tiranë" title="Dy vende, një eksperiencë" text="DUA dhe Oborri janë përballë njëri-tjetrit, duke e mbajtur programin e fundjavës të lidhur, të afërt dhe të lehtë për t’u ndjekur." />
+        </div>
+        <div class="venue-grid">
+          <article class="venue-card">
+            <div class="venue-pin" aria-hidden="true"><span></span></div>
+            <span>Eventi · Grupet e punës</span>
+            <strong>DUA</strong>
+            <p>Hapësira kryesore e IB Global për takimet, prezantimet dhe sesionet profesionale.</p>
+            <div class="venue-schedule"><span>E premte · Mbrëmje</span><span>E shtunë · 10:00–13:30</span><span>E shtunë · 18:00–19:30</span><span>E diel · 10:00–13:00</span></div>
+            <a class="venue-map-link" href="https://www.google.com/maps/search/?api=1&query=Dua+Space+Tirana" target="_blank" rel="noreferrer">Hape në hartë <span>↗</span></a>
+          </article>
+          <article class="venue-card">
+            <div class="venue-pin" aria-hidden="true"><span></span></div>
+            <span>Njohje · Darkë</span>
+            <strong>Oborri</strong>
+            <p>Ambienti përballë DUA ku komuniteti mblidhet për biseda më të lira, njohje dhe darkë.</p>
+            <div class="venue-schedule"><span>E shtunë · 19:30 e tutje</span></div>
+            <a class="venue-map-link" href="https://www.google.com/maps/search/?api=1&query=Oborri+Tirana" target="_blank" rel="noreferrer">Hape në hartë <span>↗</span></a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <CommunityMap />
+
+    <section class="section partners-section" id="partners">
+      <div class="container partner-invite-card">
+        <div><p class="eyebrow">Ftesë e hapur</p><h2>Të bashkëpunojmë.</h2></div>
+        <p>IB Global mirëpret OJQ dhe organizata që duan të sjellin dije, ide dhe mundësi të reja për komunitetin. <span>Partnerët do të prezantohen së shpejti.</span></p>
+      </div>
+    </section>
+
+    <section class="register-section" id="register">
+      <div class="container register-inner">
+        <div class="register-copy">
+          <p class="eyebrow">REGJISTRIMI</p>
+          <h2>Rezervo vendin tënd në IB Global.</h2>
+          <p class="register-intro">Tri ditë për t’u ritakuar, për të shkëmbyer ide dhe për të ndërtuar bashkë hapin e radhës të komunitetit.</p>
+          <div class="register-facts" aria-label="Detajet e konferencës">
+            <div class="register-fact"><span>Kur</span><strong>{conference.dates}</strong></div>
+            <div class="register-fact"><span>Ku</span><strong>Tiranë, Shqipëri</strong></div>
+            <div class="register-fact"><span>Përfshin</span><strong>Programin e plotë</strong></div>
+          </div>
+        </div>
+        <div class="paypal-checkout">
+          <div class="checkout-head">
+            <div><span>Bileta juaj</span><strong>IB Global 2026</strong></div>
+            <div class="checkout-price"><strong>25</strong><span>EUR</span></div>
+          </div>
+          <div class="checkout-divider" aria-hidden="true"></div>
+          <div class="checkout-body">
+            <p class="checkout-label">Paguaj dhe konfirmo vendin</p>
+            <div id="paypal-container-SFPWCU5CEPV8N"></div>
+            <div class="checkout-note">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 5 6v5c0 4.6 2.8 8.3 7 10 4.2-1.7 7-5.4 7-10V6l-7-3Z"/><path d="m9 12 2 2 4-4"/></svg>
+              <span>Pagesë e sigurt përmes PayPal. Email-i i PayPal do të përdoret për konfirmimin e regjistrimit.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script is:inline src="https://www.paypal.com/sdk/js?client-id=BAAxy7mPd_WjIq_ykEZpe8rO7ppa172-YuqzvJPc0EATSsFDJy_x-7Q4XYHtaUbFfX00r0RPWIYd1saUrk&components=hosted-buttons&disable-funding=venmo&currency=EUR"></script>
+      <script is:inline>
+        paypal.HostedButtons({
+          hostedButtonId: "SFPWCU5CEPV8N",
+        }).render("#paypal-container-SFPWCU5CEPV8N");
+      </script>
+    </section>
+    <script is:inline>
+      const revealItems = document.querySelectorAll('.day-content, .venue, .register-inner');
+      revealItems.forEach((item) => item.classList.add('reveal-item'));
+
+      if (!('IntersectionObserver' in window)) {
+        revealItems.forEach((item) => item.classList.add('is-visible'));
+      } else {
+      const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        });
+      }, { threshold: 0.12 });
+
+      revealItems.forEach((item) => revealObserver.observe(item));
+      }
+
+    </script>
+  </main>
+  <Footer />
+</BaseLayout>

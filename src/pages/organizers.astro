@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const agenda = [
+  { time: '10:00', title: 'Hapja dhe përditësimi nga Bordi', text: 'Ku jemi sot, çfarë ka ndryshuar dhe cilat vendime kërkojnë vëmendjen e Asamblesë.' },
+  { time: '10:35', title: 'Raportimi i qyteteve', text: 'Një përditësim i shkurtër nga çdo qytet: aktiviteti, sfidat, ekipi dhe prioritetet.' },
+  { time: '11:35', title: 'Gjendja e iniciativave', text: 'Progresi i grupeve të punës, projekteve dhe bashkëpunimeve ndërmjet qyteteve.' },
+  { time: '12:20', title: 'Propozimet dhe vendimet', text: 'Diskutim i strukturuar, pronar për çdo vendim dhe hapat që duhet të ndiqen.' },
+  { time: '13:10', title: 'Përmbledhja', text: 'Konfirmimi i përgjegjësive, afateve dhe mënyrës së raportimit pas takimit.' },
+];
+
+const contributorColumns = [
+  ['Bordi i IB', 'Ekipi Tiranë', 'Ekipi Berlin', 'Ekipi London', 'Ekipi New York', 'Ekipi Milano', 'Ekipi Zürich', 'Ekipi Köln'],
+  ['Drejtues qytetesh', 'Drejtues eventesh', 'Drejtues komuniteti', 'Ekipi i teknologjisë', 'Ekipi i dizajnit', 'Komunikimi', 'Organizimi', 'Partneritetet'],
+  ['Shëndetësi', 'Teknologji', 'Financë', 'Akademi', 'Ligj', 'Media', 'Art dhe Kulturë', 'Sipërmarrje'],
+  ['Mentorë', 'Folës', 'Facilitues', 'Vullnetarë', 'Organizatorë', 'Kontribues', 'Ambasadorë', 'Bashkëpunëtorë'],
+];
+---
+<BaseLayout title="Vetëm për organizatorët · IB Global 2026" description="Hapësira e punës për organizatorët e IB Global 2026.">
+  <Header />
+  <main class="organizers-page">
+    <section class="organizers-hero grid-surface">
+      <div class="container organizers-hero-inner">
+        <div><p class="eyebrow">VETËM PËR ORGANIZATORËT · IB GLOBAL 2026</p><h1>Takimi i<br />Asamblesë</h1></div>
+        <div class="organizers-brief"><span>E shtunë · 19 Shtator</span><strong>10:00–13:30</strong><p>Sesioni ku qytetet, ekipet dhe Bordi bashkojnë informacionin, marrin vendime dhe përcaktojnë punën e përbashkët.</p><div class="assembly-network-flow" aria-label="Rrjedha e punës së Asamblesë"><div><small>01</small><b>Qytetet</b></div><i>→</i><div><small>02</small><b>Asambleja</b></div><i>→</i><div><small>03</small><b>Veprimet</b></div></div></div>
+      </div>
+    </section>
+
+    <section class="section organizers-agenda grid-surface">
+      <div class="container organizer-layout">
+        <header class="organizer-section-title"><p class="eyebrow">Agjenda e Asamblesë</p><h2>Nga zëri i qyteteve te vendimi.</h2><p>Çdo pjesë e takimit e çon rrjetin drejt një rezultati të qartë: kontekst, prioritete, vendim dhe përgjegjësi.</p></header>
+        <div class="internal-agenda">{agenda.map((item, index) => (<article><time>{item.time}</time><span>{String(index + 1).padStart(2, '0')}</span><div><h3>{item.title}</h3><p>{item.text}</p></div></article>))}</div>
+      </div>
+    </section>
+
+    <section class="section city-preparation grid-surface">
+      <div class="container city-preparation-layout">
+        <header class="organizer-section-title"><p class="eyebrow">Për çdo qytet</p><h2>Ejani me një pamje të qartë.</h2><p>Raportimi duhet të jetë i shkurtër, i sinqertë dhe i dobishëm për pjesën tjetër të rrjetit.</p></header>
+        <div class="city-preparation-grid">
+          <article><span>01</span><div><h3>Çfarë ka ndodhur?</h3><p>Aktivitetet, pjesëmarrja dhe momentet kryesore që nga takimi i fundit.</p></div></article>
+          <article><span>02</span><div><h3>Çfarë ju pengon?</h3><p>Sfidat ku qyteti ka nevojë për dije, njerëz ose mbështetje nga rrjeti.</p></div></article>
+          <article><span>03</span><div><h3>Çfarë propozoni?</h3><p>Një ide ose hap konkret që mund të zhvillohet me qytete dhe ekipe të tjera.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section proposals-section grid-surface" id="proposals">
+      <div class="container">
+        <header class="organizer-section-title"><p class="eyebrow">Nga rrjeti në Asamble</p><h2>Një format i përbashkët për çdo propozim.</h2><p>Kur propozimet kanë të njëjtën strukturë, Asambleja mund të kuptojë më shpejt ndikimin dhe të marrë vendime më të mira.</p></header>
+        <div class="proposal-grid">
+          <article><span>01</span><h3>Problemi</h3><p>Çfarë po përpiqemi të zgjidhim dhe pse ka rëndësi për rrjetin tani?</p></article>
+          <article><span>02</span><h3>Propozimi</h3><p>Cila është zgjidhja, çfarë kërkon dhe cilat janë alternativat?</p></article>
+          <article><span>03</span><h3>Vendimi</h3><p>Çfarë duhet të miratojë Asambleja dhe kush e merr përgjegjësinë?</p></article>
+          <article><span>04</span><h3>Ndjekja</h3><p>Afati, pronari, momenti i kontrollit dhe mënyra si ndahet progresi.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="contributors-section">
+      <div class="container contributors-layout">
+        <div class="contributors-copy"><p class="eyebrow">NJË RRJET · SHUMË EKIPE</p><h2>Asambleja i lidh të gjitha.</h2><p>Qytetet, grupet profesionale dhe ekipet mbështetëse sjellin perspektiva të ndryshme në një drejtim të përbashkët për Illyrian Brains.</p><small>Çdo emër, qytet dhe rol është pjesë e së njëjtës punë.</small></div>
+        <div class="community-wall contributor-wall" aria-label="Ekipet kontribuese të Illyrian Brains">{contributorColumns.map((items, columnIndex) => (<div class:list={['community-column', { 'accent-column': columnIndex % 2 === 1 }]}>{[...items, ...items].map((item) => <span>{item}</span>)}</div>))}</div>
+      </div>
+    </section>
+
+    <section class="section followup-section grid-surface">
+      <div class="container followup-card">
+        <div><p class="eyebrow">Nga Asambleja te rrjeti</p><h2>Vendimi kthehet në veprim.</h2></div>
+        <ol><li><strong>Brenda 24 orësh</strong><span>Shënimet dhe vendimet ndahen me kontribuesit.</span></li><li><strong>Brenda 7 ditësh</strong><span>Pronarët konfirmojnë planin dhe afatet.</span></li><li><strong>Pas 30 ditësh</strong><span>Kontroll i progresit dhe zhbllokim i pengesave.</span></li></ol>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>

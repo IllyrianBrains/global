@@ -1,0 +1,34 @@
+---
+import { conference } from '../data/conference';
+
+const communityColumns = [
+  ['Tiranë', 'Berlin', 'London', 'New York', 'Milano', 'Zürich', 'Köln', 'Amsterdam', 'Helsinki', 'Malta', 'Tampa Bay', 'Global'],
+  ['Takime të vogla', 'Mbrëmje komunitare', 'Punëtori', 'Trajnime', 'Seminare në internet', 'Grupe pune', 'Dizajni i IB', 'Rreth IB', 'Takime njohjeje', 'Konferenca globale', 'Biseda komunitare', 'Evente qytetesh'],
+  ['Teknologji', 'Shëndetësi', 'Akademi', 'Financë', 'Ligj', 'Dizajn', 'Media', 'Art dhe Kulturë', 'Sipërmarrje', 'Inteligjencë Artificiale', 'Diplomaci', 'Zhvillim Profesional'],
+  ['Lidhim mendjet', 'Ndërtojmë të ardhmen', 'Bashkëpunim', 'Partneritete', 'Mentorim', 'Shkëmbim Dijeje', 'Ndihmë Reciproke', 'Gjuha Shqipe', 'Diaspora', 'Mundësi', 'Miqësi', 'Iniciativa'],
+];
+---
+<section class="hero">
+  <div class="hero-line" aria-hidden="true"><span></span></div>
+  <div class="hero-inner container">
+    <div class="hero-copy">
+      <h1>{conference.name}<br /><span>{conference.city}, {conference.country}</span></h1>
+      <p class="tagline">{conference.tagline}</p>
+      <div class="hero-meta"><span></span><p class="date">{conference.dates}</p></div>
+      <div class="hero-actions">
+        <a class="button primary" href={conference.registrationUrl}>Regjistrohu tani</a>
+        <a class="button ghost" href="#community">Njihu me komunitetin</a>
+      </div>
+    </div>
+    <div class="hero-community" aria-label="Fushat dhe aktivitetet e komunitetit Illyrian Brains">
+      <div class="community-wall" aria-hidden="true">
+        {communityColumns.map((items, columnIndex) => (
+          <div class:list={['community-column', { 'accent-column': columnIndex % 2 === 1 }]}>
+            {[...items, ...items].map((item) => <span>{item}</span>)}
+          </div>
+        ))}
+      </div>
+      <p>Illyrian Brains · një rrjet, kudo në botë</p>
+    </div>
+  </div>
+</section>
