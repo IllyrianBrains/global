@@ -448,6 +448,16 @@ img { display: block; max-width: 100%; }
 .assembly-network-flow small { color: #c9aebd; font-size: 7px; }
 .assembly-network-flow b { overflow: hidden; margin-top: 2px; font-size: 10px; text-overflow: ellipsis; white-space: nowrap; }
 .assembly-network-flow i { color: rgba(255,255,255,.32); font-size: 12px; font-style: normal; }
+.organizer-reference-links { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 19px; }
+.organizer-reference-links a { padding-bottom: 2px; border-bottom: 1px solid rgba(255,255,255,.28); color: rgba(255,255,255,.68); font-size: 10px; font-weight: 700; }
+.organizer-reference-links a:hover { color: #fff; border-color: #fff; }
+.assembly-roles { padding: 0; border-bottom: 1px solid var(--line); background-color: #f5f2f4; }
+.assembly-roles-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+.assembly-roles article { min-height: 250px; padding: 30px 26px; }
+.assembly-roles article + article { border-left: 1px solid rgba(116,71,97,.18); }
+.assembly-roles article > span { color: var(--accent); font-size: 9px; font-weight: 800; }
+.assembly-roles h2 { margin: 55px 0 9px; font-size: 29px; font-weight: 400; }
+.assembly-roles p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.55; }
 .organizers-agenda { background-color: #fbfbfb; }
 .organizer-layout { display: grid; grid-template-columns: .72fr 1.28fr; gap: clamp(55px, 9vw, 120px); }
 .organizer-section-title h2 { max-width: 590px; margin: 0; font-size: clamp(42px, 5vw, 64px); font-weight: 400; line-height: .95; letter-spacing: -.045em; }
@@ -546,6 +556,9 @@ img { display: block; max-width: 100%; }
   .saturday-section .day-heading, .sunday-section .day-heading { grid-template-columns: minmax(0, 1fr) auto; }
   .organizer-callout { grid-column: 2; justify-self: start; margin-top: 8px; }
   .organizers-hero-inner, .organizer-layout, .city-preparation-layout, .contributors-layout, .followup-card { grid-template-columns: 1fr; gap: 48px; }
+  .assembly-roles-grid { grid-template-columns: 1fr 1fr; }
+  .assembly-roles article:nth-child(3) { border-top: 1px solid rgba(116,71,97,.18); border-left: 0; }
+  .assembly-roles article:nth-child(4) { border-top: 1px solid rgba(116,71,97,.18); }
   .proposal-grid { grid-template-columns: 1fr 1fr; }
   .proposal-grid article:nth-child(3) { border-left: 0; border-top: 1px solid rgba(116,71,97,.18); }
   .proposal-grid article:nth-child(4) { border-top: 1px solid rgba(116,71,97,.18); }
@@ -617,9 +630,8 @@ img { display: block; max-width: 100%; }
   .day-photo:nth-child(4) { display: none; }
   .hero-actions { flex-direction: column; align-items: stretch; }
   .button { min-height: 50px; }
-  .stacked-cards { gap: 0; padding-bottom: 10px; }
-  .stacked-cards > article { width: 94%; }
-  .stacked-cards > article + article { margin-top: -56px; }
+  .stacked-cards { gap: 16px; padding-bottom: 10px; }
+  .stacked-cards > article { width: 100%; }
   .card-image-placeholder { aspect-ratio: 16 / 9; }
   .card-meta { gap: 9px; }
   .card-meta > span { font-size: 10px; }
@@ -668,6 +680,10 @@ img { display: block; max-width: 100%; }
   .organizers-brief { padding: 22px 0 0; border-top: 1px solid rgba(201,174,189,.45); border-left: 0; }
   .assembly-network-flow { gap: 5px; }
   .assembly-network-flow > div { padding-inline: 7px; }
+  .assembly-roles-grid { grid-template-columns: 1fr; }
+  .assembly-roles article { min-height: 205px; }
+  .assembly-roles article + article { border-top: 1px solid rgba(116,71,97,.18); border-left: 0; }
+  .assembly-roles h2 { margin-top: 38px; }
   .internal-agenda article { grid-template-columns: 52px 1fr; gap: 12px; }
   .internal-agenda article > span { display: none; }
   .proposal-grid { grid-template-columns: 1fr; }

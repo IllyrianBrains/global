@@ -9,8 +9,8 @@ import { conference, workshops } from '../data/conference';
 
 const saturdayEvents = [
   { time: '10:00–13:30', title: 'Takimi i Asamblesë', text: 'Sesioni i brendshëm i punës ku organizatorët përcaktojnë prioritetet, përgjegjësitë dhe hapat e ardhshëm të rrjetit.', agenda: ['Përditësimi nga Bordi', 'Raportimi i qyteteve', 'Iniciativat dhe vendimet'], image: '/assets/inst_starting.png', restricted: true, href: '/organizers/' },
-  { time: '18:00–19:30', title: 'Eventi kryesor', text: 'Një sesion publik në DUA kushtuar vizionit, zhvillimit dhe produktit të Illyrian Brains, me një folës të ftuar.', agenda: ['Hapja e eventit', 'Fjala kryesore', 'Vizioni dhe produkti i IB'], image: '/assets/inst_global_serious.png', location: 'Dua', query: 'Dua+Space+Tirana' },
-  { time: '19:30 e tutje', title: 'Darkë dhe njohje profesionale', text: 'Mbrëmja përmbyllëse te Oborri krijon hapësirë për biseda, lidhje të reja dhe mundësi konkrete bashkëpunimi.', agenda: ['Darkë bufe', 'Njohje dhe diskutime', 'Muzikë dhe komunitet'], image: '/assets/inst_global.png', location: 'Oborri', query: 'Oborri+Tirana' },
+  { time: '18:00–19:30', title: 'Eventi me të ftuar', text: 'Një sesion publik në DUA kushtuar vizionit, zhvillimit dhe produktit të Illyrian Brains, me një folës të ftuar.', agenda: ['Hapja e eventit', 'Fjala kryesore', 'Vizioni dhe produkti i IB'], image: '/assets/inst_global_serious.png', location: 'Dua', query: 'Dua+Space+Tirana' },
+  { time: '19:30 e tutje', title: 'Networking dhe mbrëmje e lirë', text: 'Mbrëmja përmbyllëse te Oborri krijon hapësirë për biseda, lidhje të reja dhe mundësi konkrete bashkëpunimi.', agenda: ['Darkë bufe', 'Njohje dhe diskutime', 'Muzikë dhe komunitet'], image: '/assets/inst_global.png', location: 'Oborri', query: 'Oborri+Tirana' },
 ];
 ---
 <BaseLayout title={`${conference.name} · ${conference.city}`}>
@@ -26,7 +26,7 @@ const saturdayEvents = [
           <article class="event-list-card friday-event">
             <div class="event-list-copy">
               <div class="card-meta"><span>Mbrëmje</span><small><a class="location-link" href="https://www.google.com/maps/search/?api=1&query=Dua+Space+Tirana" target="_blank" rel="noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6-5.2 6-11a6 6 0 1 0-12 0c0 5.8 6 11 6 11Z"/><circle cx="12" cy="10" r="2"/></svg>Dua</a></small></div>
-              <h3>Pritja e mirëseardhjes</h3>
+              <h3>HappyHour i përbashkët</h3>
               <p>Një mjedis i hapur për t’u prezantuar, për të takuar anëtarët e rinj dhe për të nisur fundjavën me komunitetin.</p>
               <ul class="mini-agenda"><li>Mirëseardhja</li><li>Prezantime të shkurtra</li><li>Biseda të lira</li></ul>
             </div>
