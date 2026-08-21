@@ -54,18 +54,38 @@ const workshopImages = [
           </header>
           <div class="saturday-grid stacked-cards">
             {saturdayEvents.map((event) => (
-              <article class:list={['event-card', { 'organizers-event': event.restricted }]} tabindex="0">
-                <div class="event-card-copy">
-                  <div class="card-meta">
-                    <span>{event.time}</span>
-                    {event.restricted ? <small class="restricted-label">Vetëm organizatorët</small> : event.location ? <small><a class="location-link" href={`https://www.google.com/maps/search/?api=1&query=${event.query}`} target="_blank" rel="noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6-5.2 6-11a6 6 0 1 0-12 0c0 5.8 6 11 6 11Z"/><circle cx="12" cy="10" r="2"/></svg>{event.location}</a></small> : null}
+              event.restricted ? (
+                <details class="session-item no-index organizers-event">
+                  <summary>
+                    <span class="session-summary-text">
+                      <span class="session-time">{event.time}</span>
+                      <h3><a href={event.href} onclick="event.stopPropagation()">{event.title} ↗</a></h3>
+                      <span class="session-tags"><small class="restricted-label">Vetëm organizatorët</small></span>
+                    </span>
+                    <span class="session-toggle" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></span>
+                  </summary>
+                  <div class="session-body">
+                    <div class="session-body-copy">
+                      <p>{event.text}</p>
+                      <ul class="mini-agenda">{event.agenda.map((item) => <li>{item}</li>)}</ul>
+                    </div>
+                    <div class="session-body-image"><img src={event.image} alt={`Pamje nga ${event.title.toLowerCase()}`} loading="lazy" /></div>
                   </div>
-                  <h3>{event.href ? <a href={event.href}>{event.title} ↗</a> : event.title}</h3>
-                  <p>{event.text}</p>
-                  <ul class="mini-agenda">{event.agenda.map((item) => <li>{item}</li>)}</ul>
-                </div>
-                <div class="event-image"><img src={event.image} alt={`Pamje nga ${event.title.toLowerCase()}`} loading="lazy" /></div>
-              </article>
+                </details>
+              ) : (
+                <article class="event-card" tabindex="0">
+                  <div class="event-card-copy">
+                    <div class="card-meta">
+                      <span>{event.time}</span>
+                      {event.location ? <small><a class="location-link" href={`https://www.google.com/maps/search/?api=1&query=${event.query}`} target="_blank" rel="noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6-5.2 6-11a6 6 0 1 0-12 0c0 5.8 6 11 6 11Z"/><circle cx="12" cy="10" r="2"/></svg>{event.location}</a></small> : null}
+                    </div>
+                    <h3>{event.title}</h3>
+                    <p>{event.text}</p>
+                    <ul class="mini-agenda">{event.agenda.map((item) => <li>{item}</li>)}</ul>
+                  </div>
+                  <div class="event-image"><img src={event.image} alt={`Pamje nga ${event.title.toLowerCase()}`} loading="lazy" /></div>
+                </article>
+              )
             ))}
           </div>
       </div>
@@ -75,6 +95,11 @@ const workshopImages = [
       <div class="container day-content">
           <header class="day-heading">
             <div class="day-heading-copy"><p class="day-date"><span>E diel</span>20 Shtator</p><h2>Punëtori dhe ligjërata</h2><p>Takime tematike në <a class="inline-location-link" href="https://www.google.com/maps/search/?api=1&query=Dua+Space+Tirana" target="_blank" rel="noreferrer">Dua</a>, me fokus te shkëmbimi i ekspertizës, diskutimi i sfidave dhe krijimi i bashkëpunimeve të reja.</p></div>
+            <a class="organizer-callout proposal-callout" href="mailto:illyrianbrains@gmail.com?subject=Propozim%20p%C3%ABr%20pun%C3%ABtori%20ose%20ligj%C3%ABrat%C3%AB%20-%20IB%20Global%202026&body=P%C3%ABrsh%C3%ABndetje%2C%0A%0AD%C3%ABshiroj%20t%C3%AB%20propozoj%20nj%C3%AB%20pun%C3%ABtori%20ose%20ligj%C3%ABrat%C3%AB%20p%C3%ABr%20IB%20Global%202026.%0A%0ATitulli%3A%0AFormati%3A%0AP%C3%ABrshkrimi%20i%20shkurt%C3%ABr%3A%0AKoh%C3%ABzgjatja%3A%0AEmri%20dhe%20kontakti%3A%0A">
+              <span>Ndani ekspertizën tuaj</span>
+              <strong>Propozoni një sesion</strong>
+              <i aria-hidden="true">↗</i>
+            </a>
           </header>
           <div class="session-list">
             {workshops.map((workshop, index) => (

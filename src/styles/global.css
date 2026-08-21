@@ -288,6 +288,13 @@ img { display: block; max-width: 100%; }
 .organizers-event .mini-agenda { border-color: rgba(196,35,45,.2); }
 .organizers-event .mini-agenda li + li { border-color: rgba(196,35,45,.16); }
 .organizers-event .mini-agenda li::before { color: #c4232d; background: transparent; }
+.organizers-event .session-time { color: #b51f29 !important; }
+.session-item.organizers-event .session-toggle { border-color: rgba(196,35,45,.35); color: #c4232d; }
+.session-item.organizers-event[open] .session-toggle { background: #c4232d; }
+.session-item.organizers-event[open] > summary { border-bottom-color: rgba(196,35,45,.22); }
+.session-item.organizers-event summary:focus-visible { outline-color: #c4232d; }
+.session-item.no-index summary { grid-template-columns: minmax(0, 1fr) 32px; }
+.session-item.no-index .session-body { padding-left: 28px; }
 .event-card ul:not(.mini-agenda) { margin: 18px 0 0; padding: 16px 0 0; border-top: 1px solid rgba(255,255,255,.17); list-style: none; }
 .event-card ul:not(.mini-agenda) li { display: flex; justify-content: space-between; gap: 12px; padding: 4px 0; font-size: 12px; }
 .event-card ul:not(.mini-agenda) li em { opacity: .58; font-style: normal; text-align: right; }
@@ -699,11 +706,13 @@ stripe-buy-button { display: block; }
   .mini-agenda li + li { border-top: 1px solid rgba(79,128,100,.16); border-left: 0; }
   .mini-agenda li::before { left: 8px; top: 50%; transform: translateY(-50%); font-size: 9px; }
   .session-item summary { grid-template-columns: 32px minmax(0, 1fr) 28px; gap: 14px; padding: 20px; }
+  .session-item.no-index summary { grid-template-columns: minmax(0, 1fr) 28px; }
   .session-index { font-size: 11px; }
   .session-summary-text { grid-template-columns: 1fr; grid-template-areas: "time" "title" "tags"; row-gap: 6px; }
   .session-summary-text .session-tags { justify-self: start; }
   .session-summary-text h3 { font-size: 19px; }
   .session-body { grid-template-columns: 1fr; padding: 6px 20px 22px 66px; gap: 18px; }
+  .session-item.no-index .session-body { padding-left: 20px; }
   .session-body-image { min-height: 170px; }
   .friday-gallery { grid-template-columns: 1.35fr .65fr; grid-template-rows: 100px 100px; gap: 5px; }
   .day-photo { min-height: 0; }
