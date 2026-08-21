@@ -382,9 +382,10 @@ img { display: block; max-width: 100%; }
 .checkout-divider::before, .checkout-divider::after { content: ''; position: absolute; top: -10px; width: 18px; height: 18px; border-radius: 50%; background: #f3eff1; }
 .checkout-divider::before { left: -40px; }
 .checkout-divider::after { right: -40px; }
-.checkout-body { padding: 25px 30px 28px; }
+.checkout-body { padding: 25px 30px 28px; display: flex; flex-direction: column; align-items: center; }
 .checkout-label { margin: 0 0 14px; text-align: center; }
 #paypal-container-SFPWCU5CEPV8N { min-height: 45px; }
+stripe-buy-button { display: block; }
 .checkout-note { display: flex; align-items: flex-start; gap: 9px; max-width: 330px; margin: 13px auto 0; color: var(--muted); font-size: 10px; line-height: 1.5; }
 .checkout-note svg { flex: 0 0 16px; width: 16px; margin-top: 1px; fill: none; stroke: var(--accent); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
 .partners-section { padding-block: 64px; border-top: 1px solid var(--line); background-color: #f8f8f8; background-image: linear-gradient(rgba(23,24,29,.018) 1px, transparent 1px), linear-gradient(90deg, rgba(23,24,29,.018) 1px, transparent 1px); background-size: 16px 16px; }

@@ -124,27 +124,20 @@ const saturdayEvents = [
           </div>
         </div>
         <div class="paypal-checkout">
-          <div class="checkout-head">
-            <div><span>Bileta juaj</span><strong>IB Global 2026</strong></div>
-            <div class="checkout-price"><strong>25</strong><span>EUR</span></div>
-          </div>
-          <div class="checkout-divider" aria-hidden="true"></div>
           <div class="checkout-body">
             <p class="checkout-label">Paguaj dhe konfirmo vendin</p>
-            <div id="paypal-container-SFPWCU5CEPV8N"></div>
+            <stripe-buy-button
+              buy-button-id="buy_btn_1U6nftAoGYzPdB47SzFWTQsz"
+              publishable-key="pk_live_51U64ShAoGYzPdB47S0s87l5peuSWDscAjjoYPCXj015UHNYjDuoK9PrO5uws4FBMkwarf1a3DyPC4jJxM9VHHn6e00P32zBt5V"
+            ></stripe-buy-button>
             <div class="checkout-note">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 5 6v5c0 4.6 2.8 8.3 7 10 4.2-1.7 7-5.4 7-10V6l-7-3Z"/><path d="m9 12 2 2 4-4"/></svg>
-              <span>Pagesë e sigurt përmes PayPal. Email-i i PayPal do të përdoret për konfirmimin e regjistrimit.</span>
+              <span>Pagesë e sigurt përmes Stripe. Email-i juaj do të përdoret për konfirmimin e regjistrimit.</span>
             </div>
           </div>
         </div>
       </div>
-      <script is:inline src="https://www.paypal.com/sdk/js?client-id=BAAxy7mPd_WjIq_ykEZpe8rO7ppa172-YuqzvJPc0EATSsFDJy_x-7Q4XYHtaUbFfX00r0RPWIYd1saUrk&components=hosted-buttons&disable-funding=venmo&currency=EUR"></script>
-      <script is:inline>
-        paypal.HostedButtons({
-          hostedButtonId: "SFPWCU5CEPV8N",
-        }).render("#paypal-container-SFPWCU5CEPV8N");
-      </script>
+      <script async is:inline src="https://js.stripe.com/v3/buy-button.js"></script>
     </section>
     <script is:inline>
       const revealItems = document.querySelectorAll('.day-content, .venue, .register-inner');
