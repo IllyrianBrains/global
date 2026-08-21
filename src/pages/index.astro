@@ -15,7 +15,7 @@ const saturdayEvents = [
 ---
 <BaseLayout title={`IB ${conference.name} · ${conference.city}`} description={`${conference.description} ${conference.city}, ${conference.dates}.`}>
   <Header />
-  <main>
+  <main class="landing-page">
     <Hero />
 
     <section class="section day-section friday-section" id="program">
@@ -66,11 +66,34 @@ const saturdayEvents = [
     <section class="section day-section sunday-section" id="sunday">
       <div class="container day-content">
           <header class="day-heading">
-            <div class="day-heading-copy"><p class="day-date"><span>E diel</span>20 Shtator</p><h2>Sesione profesionale</h2><p>Takime tematike me fokus te shkëmbimi i ekspertizës, diskutimi i sfidave dhe krijimi i bashkëpunimeve të reja.</p></div>
+            <div class="day-heading-copy"><p class="day-date"><span>E diel</span>20 Shtator</p><h2>Punëtori dhe ligjërata</h2><p>Takime tematike me fokus te shkëmbimi i ekspertizës, diskutimi i sfidave dhe krijimi i bashkëpunimeve të reja.</p></div>
           </header>
-          <div class="professional-grid stacked-cards">
+          <div class="session-list">
             {workshops.map((workshop, index) => (
-              <article class="professional-card" tabindex="0"><div class="event-card-copy"><div class="card-meta"><span>{workshop.time}</span><small>{workshop.type} · <a class="location-link" href="https://www.google.com/maps/search/?api=1&query=Dua+Space+Tirana" target="_blank" rel="noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6-5.2 6-11a6 6 0 1 0-12 0c0 5.8 6 11 6 11Z"/><circle cx="12" cy="10" r="2"/></svg>Dua</a></small></div><h3>{workshop.title}</h3><p>{workshop.text}</p><ul class="mini-agenda">{workshop.agenda.map((item) => <li>{item}</li>)}</ul></div><div class="event-image"><img src={index === 0 ? '/assets/inst_workshop.png' : '/assets/inst_meetup.png'} alt={index === 0 ? 'Pjesëmarrës gjatë një punëtorie të Illyrian Brains' : 'Profesionistë gjatë një takimi të Illyrian Brains'} loading="lazy" /></div></article>
+              <details class="session-item" open={index === 0}>
+                <summary>
+                  <span class="session-index">{String(index + 1).padStart(2, '0')}</span>
+                  <span class="session-summary-text">
+                    <span class="card-meta"><span>{workshop.time}</span><small>{workshop.type} · <a class="location-link" href="https://www.google.com/maps/search/?api=1&query=Dua+Space+Tirana" target="_blank" rel="noreferrer" onclick="event.stopPropagation()"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6-5.2 6-11a6 6 0 1 0-12 0c0 5.8 6 11 6 11Z"/><circle cx="12" cy="10" r="2"/></svg>Dua</a></small></span>
+                    <h3>{workshop.title}</h3>
+                  </span>
+                  <span class="session-toggle" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></span>
+                </summary>
+                <div class="session-body">
+                  <div class="session-body-copy">
+                    <p>{workshop.text}</p>
+                    <ul class="mini-agenda">{workshop.agenda.map((item) => <li>{item}</li>)}</ul>
+                    <div class="session-speaker">
+                      <span class="session-speaker-avatar">{workshop.speaker.initials}</span>
+                      <span class="session-speaker-name">Me <strong>{workshop.speaker.name}</strong></span>
+                      {workshop.speaker.linkedin && (
+                        <a class="session-speaker-linkedin" href={workshop.speaker.linkedin} target="_blank" rel="noreferrer" aria-label={`${workshop.speaker.name} në LinkedIn`}>in</a>
+                      )}
+                    </div>
+                  </div>
+                  <div class="session-body-image"><img src={index === 0 ? '/assets/inst_workshop.png' : '/assets/inst_meetup.png'} alt={index === 0 ? 'Pjesëmarrës gjatë një punëtorie të Illyrian Brains' : 'Profesionistë gjatë një takimi të Illyrian Brains'} loading="lazy" /></div>
+                </div>
+              </details>
             ))}
           </div>
       </div>
@@ -105,9 +128,37 @@ const saturdayEvents = [
     <CommunityMap />
 
     <section class="section partners-section" id="partners">
-      <div class="container partner-invite-card">
-        <div><p class="eyebrow">Ftesë e hapur</p><h2>Të bashkëpunojmë.</h2></div>
-        <p>IB Global mirëpret OJQ dhe organizata që duan të sjellin dije, ide dhe mundësi të reja për komunitetin. <span>Partnerët do të prezantohen së shpejti.</span></p>
+      <div class="container partners-inner">
+        <header class="partners-heading">
+          <div>
+            <p class="eyebrow">Partneritetet</p>
+            <h2>Partneritet që<br />krijon vlerë.</h2>
+          </div>
+          <div class="partners-intro">
+            <p>Bashkëpunojmë me kompani dhe organizata që duan të lidhen me profesionistë shqiptarë, të ndajnë ekspertizën e tyre dhe të krijojnë mundësi me ndikim afatgjatë.</p>
+            <a class="partner-button" href="mailto:illyrianbrains@gmail.com?subject=Partneritet%20me%20IB%20Global%202026">Na shkruani <span aria-hidden="true">↗</span></a>
+          </div>
+        </header>
+
+        <div class="partner-benefits" aria-label="Përfitimet e partneritetit">
+          <article>
+            <span>01</span>
+            <h3>Gjeni kontakte</h3>
+            <p>Njihuni me njerëz të rinj dhe hapni mundësi për bashkëpunime të vlefshme.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Zhvilloni rrjetin</h3>
+            <p>Takoni profesionistë, sipërmarrës dhe organizatorë nga rrjeti shqiptar në botë.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Mbështetni komunitetin</h3>
+            <p>Ndihmoni që më shumë dije, ide dhe mundësi të kthehen në bashkëpunime me vlerë.</p>
+          </article>
+        </div>
+
+        <p class="partners-note"><span></span> Partnerët tanë do t’i prezantojmë së shpejti.</p>
       </div>
     </section>
 

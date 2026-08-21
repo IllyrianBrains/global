@@ -3,7 +3,7 @@ export const conference = {
   city: 'Tiranë',
   country: 'AL',
   dates: '18-20 Shtator 2026',
-  tagline: 'IB lidh shqiptarët nëpër botë për t’u njohur, ndihmuar dhe për të ndërtuar gjëra së bashku.',
+  tagline: "Zhvillim në karrierë, integrim më i lehtë dhe miqësi që i qëndrojnë kohës — të gjitha brenda një komuniteti që flet gjuhën tënde.",
   description:
     'Tri ditë me ide, bashkëpunim dhe komunitet në rrjetin Illyrian Brains — një mbrëmje mirëseardhjeje, takime mes anëtarëve dhe një konferencë për çdo fushë.',
   registrationUrl: '#register',
@@ -48,8 +48,8 @@ export const speakers = [
 ];
 
 export const workshops = [
-  { time: '10:00–13:00', title: 'Shpjegueshmëria e vendimeve të IA-së', type: 'Teknologji', text: 'Sesioni trajton mënyrën si kuptohen dhe komunikohen vendimet e sistemeve të inteligjencës artificiale.', agenda: ['Hyrje në temë', 'Raste praktike', 'Diskutim në grup'] },
-  { time: '10:00–13:00', title: 'IB Shëndetësi — takim profesional', type: 'Shëndetësi', text: 'Një forum pune ku profesionistët shqiptarë të shëndetësisë ndajnë përvoja, sfida dhe mundësi bashkëpunimi.', agenda: ['Prezantimi i pjesëmarrësve', 'Sfidat e përbashkëta', 'Hapat e bashkëpunimit'] }
+  { time: '10:00–13:00', title: 'Shpjegueshmëria e vendimeve të IA-së', type: 'Teknologji', text: 'Sesioni trajton mënyrën si kuptohen dhe komunikohen vendimet e sistemeve të inteligjencës artificiale.', agenda: ['Hyrje në temë', 'Raste praktike', 'Diskutim në grup'], speaker: { name: 'Për t’u konfirmuar', initials: '?', linkedin: '' } },
+  { time: '10:00–13:00', title: 'IB Shëndetësi — takim profesional', type: 'Shëndetësi', text: 'Një forum pune ku profesionistët shqiptarë të shëndetësisë ndajnë përvoja, sfida dhe mundësi bashkëpunimi.', agenda: ['Prezantimi i pjesëmarrësve', 'Sfidat e përbashkëta', 'Hapat e bashkëpunimit'], speaker: { name: 'Për t’u konfirmuar', initials: '?', linkedin: '' } }
 ];
 
 export const attendees: { name: string; profession: string; city?: string; example?: boolean }[] = [

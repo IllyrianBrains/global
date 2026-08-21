@@ -4,11 +4,24 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
 const agenda = [
-  { time: '10:00', title: 'Hapja dhe përditësimi nga Bordi', text: 'Ku jemi sot, çfarë ka ndryshuar dhe cilat vendime kërkojnë vëmendjen e Asamblesë.' },
-  { time: '10:35', title: 'Raportimi i qyteteve', text: 'Një përditësim i shkurtër nga çdo qytet: aktiviteti, sfidat, ekipi dhe prioritetet.' },
-  { time: '11:35', title: 'Gjendja e iniciativave', text: 'Progresi i grupeve të punës, projekteve dhe bashkëpunimeve ndërmjet qyteteve.' },
-  { time: '12:20', title: 'Propozimet dhe vendimet', text: 'Diskutim i strukturuar, pronar për çdo vendim dhe hapat që duhet të ndiqen.' },
-  { time: '13:10', title: 'Përmbledhja', text: 'Konfirmimi i përgjegjësive, afateve dhe mënyrës së raportimit pas takimit.' },
+  { time: '10:00', title: 'Hapja e takimit', text: 'Mirëseardhja dhe prezantimi i shkurtër i agjendës.' },
+  { time: '10:10', title: 'Përditësime nga Bordi dhe Ekipet', text: 'Pikat kryesore dhe zhvillimet e fundit.' },
+  { time: '10:35', title: 'Përditësime nga Qytetet dhe Nismat', text: 'Çdo qytet ka 5 minuta për një përditësim të shkurtër.' },
+  { time: '11:20', title: 'Propozimet', text: 'Prezantimi i propozimeve për Asamblenë.' },
+  { time: '11:40', title: 'Pushim', text: 'Kafe dhe biseda të lira.' },
+  { time: '11:55', title: 'Team-Building Exercises', text: 'Ushtrime të përbashkëta për t’u njohur dhe bashkëpunuar më mirë.' },
+  { time: '12:45', title: 'Diskutim i Hapur', text: 'Pyetje, ide dhe tema të ngritura nga organizatorët.' },
+];
+
+const teamBuildingIdeas = [
+  { title: 'Harta e IB', meta: 'Hapje · 15–20 min', points: ['Vendosni qytetin ose shtetin tuaj në hartë.', 'Shënoni çfarë mund t’i ofroni rrjetit.', 'Gjeni qytete me të cilat mund të lidheni.'] },
+  { title: 'Speed Networking', meta: 'Në dyshe · 25–30 min', points: ['Bisedoni 4–5 minuta me një person.', 'Ndani çfarë po ndërtoni dhe çfarë ju duhet.', 'Mbylleni me një mënyrë konkrete për të ndihmuar.'] },
+  { title: '3 gjëra për IB', meta: 'Grupe të vogla · 25 min', points: ['Çfarë duhet të vazhdojmë?', 'Çfarë duhet të ndryshojmë?', 'Çfarë duhet të fillojmë?'] },
+  { title: 'IB Challenge', meta: 'Ekipe të përziera · 30 min', points: ['Merrni një sfidë konkrete të komunitetit.', 'Punoni 20 minuta mbi një zgjidhje praktike.', 'Prezantoni idenë dhe hapin e parë.'] },
+  { title: 'Project Marketplace', meta: 'Ide dhe projekte · 30 min', points: ['Prezantoni idenë ose projektin në një minutë.', 'Zgjidhni projektin ku dëshironi të ndihmoni.', 'Krijoni grupin e punës dhe caktoni hapin e parë.'] },
+  { title: 'Human Bingo - IB Edition', meta: 'Hapje · 15–20 min', points: ['Merrni një fletë me përvoja të ndryshme.', 'Gjeni persona që përputhen me secilën pikë.', 'Plotësoni rreshtin duke njohur njerëz të rinj.'] },
+  { title: 'Random Lunch Tables', meta: 'Gjatë drekës', points: ['Përzieni qytetet dhe profesionet në çdo tavolinë.', 'Shmangni uljen vetëm me njerëzit që njihni.', 'Përdorni një pyetje të përbashkët për të nisur bisedën.'] },
+  { title: 'Letër për IB 2027', meta: 'Mbyllje · 15 min', points: ['Diskutoni çfarë dëshironi të arrijë IB.', 'Shkruani 2–3 fjali nga çdo tavolinë.', 'Lexojini në fund dhe ruajini për vitin tjetër.'] },
 ];
 
 const contributorColumns = [
@@ -24,45 +37,41 @@ const contributorColumns = [
     <section class="organizers-hero grid-surface">
       <div class="container organizers-hero-inner">
         <div><p class="eyebrow">VETËM PËR ORGANIZATORËT · IB GLOBAL 2026</p><h1>Takimi i<br />Asamblesë</h1></div>
-        <div class="organizers-brief"><span>E shtunë · 19 Shtator</span><strong>10:00–13:30</strong><p>Sesioni ku qytetet, ekipet dhe Bordi bashkojnë informacionin, marrin vendime dhe përcaktojnë punën e përbashkët.</p><div class="assembly-network-flow" aria-label="Rrjedha e punës së Asamblesë"><div><small>01</small><b>Qytetet</b></div><i>→</i><div><small>02</small><b>Asambleja</b></div><i>→</i><div><small>03</small><b>Veprimet</b></div></div><div class="organizer-reference-links"><a href="https://illyrianbrains.org" target="_blank" rel="noreferrer">Faqja kryesore ↗</a><a href="https://illyrianbrains.org/statuti" target="_blank" rel="noreferrer">Lexo Statutin ↗</a></div></div>
-      </div>
-    </section>
-
-    <section class="assembly-roles grid-surface">
-      <div class="container assembly-roles-grid">
-        <article><span>01</span><h2>Bordi</h2><p>Udhëheq drejtimin, qeverisjen dhe vendimet që prekin rrjetin në tërësi.</p></article>
-        <article><span>02</span><h2>Qytetet</h2><p>Ndërtojnë komunitetin lokal dhe sjellin në Asamble realitetin, nevojat dhe mundësitë e tyre.</p></article>
-        <article><span>03</span><h2>Ekipet</h2><p>Mbështesin punën sipas fushave dhe funksioneve, duke lidhur ekspertizën përtej qyteteve.</p></article>
-        <article><span>04</span><h2>Projektet</h2><p>I kthejnë prioritetet e rrjetit në iniciativa konkrete, me përgjegjës, afate dhe rezultate.</p></article>
+        <div class="organizers-brief"><span>E shtunë · 19 Shtator</span><strong>10:00–13:30</strong><p>Një sesion pune për t’u njohur më mirë, për të ndarë çfarë po mësojmë dhe për t’i kthyer prioritetet e rrjetit në hapa konkretë.</p><div class="organizer-reference-links"><a href="https://illyrianbrains.org" target="_blank" rel="noreferrer">Faqja kryesore ↗</a><a href="https://illyrianbrains.org/statuti" target="_blank" rel="noreferrer">Lexo Statutin ↗</a></div></div>
       </div>
     </section>
 
     <section class="section organizers-agenda grid-surface">
       <div class="container organizer-layout">
-        <header class="organizer-section-title"><p class="eyebrow">Agjenda e Asamblesë</p><h2>Nga zëri i qyteteve te vendimi.</h2><p>Çdo pjesë e takimit e çon rrjetin drejt një rezultati të qartë: kontekst, prioritete, vendim dhe përgjegjësi.</p></header>
+        <header class="organizer-section-title"><p class="eyebrow">Agjenda</p><h2>Hapësirë për çdo qytet.</h2><p>Një rrjedhë e thjeshtë: dëgjojmë çështjet, punojmë mbi temat e përbashkëta dhe largohemi me hapa të qartë.</p></header>
         <div class="internal-agenda">{agenda.map((item, index) => (<article><time>{item.time}</time><span>{String(index + 1).padStart(2, '0')}</span><div><h3>{item.title}</h3><p>{item.text}</p></div></article>))}</div>
+      </div>
+    </section>
+
+    <section class="section organizer-exercises grid-surface">
+      <div class="container">
+        <header class="organizer-section-title exercises-heading"><p class="eyebrow">Ide për Team-Building</p><h2>Zgjidhini para takimit.</h2><p>Këto aktivitete mund të kombinohen sipas kohës dhe qëllimit të grupit. Organizatorët zgjedhin paraprakisht idetë që duan të përfshihen në program.</p></header>
+        <div class="exercise-selection-note"><span>8 ide</span><p>Rekomandim: zgjidhni një aktivitet për hapjen, një për bashkëpunim dhe një për mbylljen.</p></div>
+        <div class="exercise-grid">
+          {teamBuildingIdeas.map((idea, index) => (
+            <article>
+              <div class="exercise-top"><span>{String(index + 1).padStart(2, '0')}</span><small>Ide për përzgjedhje</small></div>
+              <p class="exercise-label">{idea.meta}</p>
+              <h3>{idea.title}</h3>
+              <ul>{idea.points.map((point) => <li>{point}</li>)}</ul>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
 
     <section class="section city-preparation grid-surface">
       <div class="container city-preparation-layout">
-        <header class="organizer-section-title"><p class="eyebrow">Për çdo qytet</p><h2>Ejani me një pamje të qartë.</h2><p>Raportimi duhet të jetë i shkurtër, i sinqertë dhe i dobishëm për pjesën tjetër të rrjetit.</p></header>
+        <header class="organizer-section-title"><p class="eyebrow">5 minuta për çdo qytet</p><h2>Ejani me propozime.</h2><p>Nuk nevojitet prezantim. Përdorni pesë minutat për t’u dhënë të tjerëve kontekst të mjaftueshëm që të mund t’ju ndihmojnë.</p></header>
         <div class="city-preparation-grid">
-          <article><span>01</span><div><h3>Çfarë ka ndodhur?</h3><p>Aktivitetet, pjesëmarrja dhe momentet kryesore që nga takimi i fundit.</p></div></article>
-          <article><span>02</span><div><h3>Çfarë ju pengon?</h3><p>Sfidat ku qyteti ka nevojë për dije, njerëz ose mbështetje nga rrjeti.</p></div></article>
-          <article><span>03</span><div><h3>Çfarë propozoni?</h3><p>Një ide ose hap konkret që mund të zhvillohet me qytete dhe ekipe të tjera.</p></div></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section proposals-section grid-surface" id="proposals">
-      <div class="container">
-        <header class="organizer-section-title"><p class="eyebrow">Nga rrjeti në Asamble</p><h2>Një format i përbashkët për çdo propozim.</h2><p>Kur propozimet kanë të njëjtën strukturë, Asambleja mund të kuptojë më shpejt ndikimin dhe të marrë vendime më të mira.</p></header>
-        <div class="proposal-grid">
-          <article><span>01</span><h3>Problemi</h3><p>Çfarë po përpiqemi të zgjidhim dhe pse ka rëndësi për rrjetin tani?</p></article>
-          <article><span>02</span><h3>Propozimi</h3><p>Cila është zgjidhja, çfarë kërkon dhe cilat janë alternativat?</p></article>
-          <article><span>03</span><h3>Vendimi</h3><p>Çfarë duhet të miratojë Asambleja dhe kush e merr përgjegjësinë?</p></article>
-          <article><span>04</span><h3>Ndjekja</h3><p>Afati, pronari, momenti i kontrollit dhe mënyra si ndahet progresi.</p></article>
+          <article><span>01</span><div><h3>Çështja</h3><p>Cila është sfida më e rëndësishme që doni të sillni në diskutim?</p></div></article>
+          <article><span>02</span><div><h3>Çfarë keni provuar?</h3><p>Ndani shkurt çfarë ka funksionuar, çfarë jo dhe çfarë keni mësuar.</p></div></article>
+          <article><span>03</span><div><h3>Çfarë ju duhet?</h3><p>Kërkoni qartë një ide, përvojë, kontakt ose mbështetje nga organizatorët e tjerë.</p></div></article>
         </div>
       </div>
     </section>
