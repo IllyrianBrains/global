@@ -8,9 +8,17 @@ import Footer from '../components/Footer.astro';
 import { conference, workshops } from '../data/conference';
 
 const saturdayEvents = [
-  { time: '10:00–13:30', title: 'Takimi i Asamblesë', text: 'Sesioni i brendshëm i punës ku organizatorët përcaktojnë prioritetet, përgjegjësitë dhe hapat e ardhshëm të rrjetit.', agenda: ['Përditësimi nga Bordi', 'Raportimi i qyteteve', 'Iniciativat dhe vendimet'], image: '/assets/inst_starting.png', restricted: true, href: '/organizers/' },
+  { time: '10:00–14:00', title: 'Takimi i Asamblesë', text: 'Sesioni i brendshëm i punës ku organizatorët përcaktojnë prioritetet, përgjegjësitë dhe hapat e ardhshëm të rrjetit.', agenda: ['Përditësimi nga Bordi', 'Raportimi i qyteteve', 'Iniciativat dhe vendimet'], image: '/assets/inst_starting.png', restricted: true, href: '/organizers/' },
   { time: '18:00–19:30', title: 'Eventi me të ftuar', text: 'Një sesion publik në DUA kushtuar vizionit, zhvillimit dhe produktit të Illyrian Brains, me një folës të ftuar.', agenda: ['Hapja e eventit', 'Fjala kryesore', 'Vizioni dhe produkti i IB'], image: '/assets/inst_global_serious.png', location: 'Dua', query: 'Dua+Space+Tirana' },
   { time: '19:30 e tutje', title: 'Networking dhe mbrëmje e lirë', text: 'Mbrëmja përmbyllëse te Oborri krijon hapësirë për biseda, lidhje të reja dhe mundësi konkrete bashkëpunimi.', agenda: ['Darkë bufe', 'Njohje dhe diskutime', 'Muzikë dhe komunitet'], image: '/assets/inst_global.png', location: 'Oborri', query: 'Oborri+Tirana' },
+];
+
+const workshopImages = [
+  { src: '/assets/inst_workshop.png', alt: 'Pjesëmarrës gjatë një punëtorie të Illyrian Brains' },
+  { src: '/assets/inst_meetup.png', alt: 'Profesionistë gjatë një takimi të Illyrian Brains' },
+  { src: '/assets/inst_global_serious.png', alt: 'Folës gjatë një prezantimi të Illyrian Brains' },
+  { src: '/assets/inst_global.png', alt: 'Pjesëmarrës duke biseduar gjatë një takimi të Illyrian Brains' },
+  { src: '/assets/inst_starting.png', alt: 'Pjesëmarrës gjatë një sesioni pune të Illyrian Brains' },
 ];
 ---
 <BaseLayout title={`IB ${conference.name} · ${conference.city}`} description={`${conference.description} ${conference.city}, ${conference.dates}.`}>
@@ -66,16 +74,17 @@ const saturdayEvents = [
     <section class="section day-section sunday-section" id="sunday">
       <div class="container day-content">
           <header class="day-heading">
-            <div class="day-heading-copy"><p class="day-date"><span>E diel</span>20 Shtator</p><h2>Punëtori dhe ligjërata</h2><p>Takime tematike me fokus te shkëmbimi i ekspertizës, diskutimi i sfidave dhe krijimi i bashkëpunimeve të reja.</p></div>
+            <div class="day-heading-copy"><p class="day-date"><span>E diel</span>20 Shtator</p><h2>Punëtori dhe ligjërata</h2><p>Takime tematike në <a class="inline-location-link" href="https://www.google.com/maps/search/?api=1&query=Dua+Space+Tirana" target="_blank" rel="noreferrer">Dua</a>, me fokus te shkëmbimi i ekspertizës, diskutimi i sfidave dhe krijimi i bashkëpunimeve të reja.</p></div>
           </header>
           <div class="session-list">
             {workshops.map((workshop, index) => (
-              <details class="session-item" open={index === 0}>
+              <details class="session-item">
                 <summary>
                   <span class="session-index">{String(index + 1).padStart(2, '0')}</span>
                   <span class="session-summary-text">
-                    <span class="card-meta"><span>{workshop.time}</span><small>{workshop.type} · <a class="location-link" href="https://www.google.com/maps/search/?api=1&query=Dua+Space+Tirana" target="_blank" rel="noreferrer" onclick="event.stopPropagation()"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6-5.2 6-11a6 6 0 1 0-12 0c0 5.8 6 11 6 11Z"/><circle cx="12" cy="10" r="2"/></svg>Dua</a></small></span>
+                    <span class="session-time">{workshop.time}</span>
                     <h3>{workshop.title}</h3>
+                    <span class="session-tags"><span class="session-tag">{workshop.type}</span><span class="session-tag session-tag-room">{workshop.room}</span></span>
                   </span>
                   <span class="session-toggle" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></span>
                 </summary>
@@ -91,7 +100,7 @@ const saturdayEvents = [
                       )}
                     </div>
                   </div>
-                  <div class="session-body-image"><img src={index === 0 ? '/assets/inst_workshop.png' : '/assets/inst_meetup.png'} alt={index === 0 ? 'Pjesëmarrës gjatë një punëtorie të Illyrian Brains' : 'Profesionistë gjatë një takimi të Illyrian Brains'} loading="lazy" /></div>
+                  <div class="session-body-image"><img src={workshopImages[index % workshopImages.length].src} alt={workshopImages[index % workshopImages.length].alt} loading="lazy" /></div>
                 </div>
               </details>
             ))}
@@ -110,7 +119,7 @@ const saturdayEvents = [
             <span>Eventi · Grupet e punës</span>
             <strong>DUA</strong>
             <p>Hapësira kryesore e IB Global për takimet, prezantimet dhe sesionet profesionale.</p>
-            <div class="venue-schedule"><span>E premte · Mbrëmje</span><span>E shtunë · 10:00–13:30</span><span>E shtunë · 18:00–19:30</span><span>E diel · 10:00–13:00</span></div>
+            <div class="venue-schedule"><span>E premte · Mbrëmje</span><span>E shtunë · 10:00–14:00</span><span>E shtunë · 18:00–19:30</span><span>E diel · 10:00–12:20</span></div>
             <a class="venue-map-link" href="https://www.google.com/maps/search/?api=1&query=Dua+Space+Tirana" target="_blank" rel="noreferrer">Hape në hartë <span>↗</span></a>
           </article>
           <article class="venue-card">
