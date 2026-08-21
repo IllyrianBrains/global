@@ -13,7 +13,7 @@ const saturdayEvents = [
   { time: '19:30 e tutje', title: 'Networking dhe mbrëmje e lirë', text: 'Mbrëmja përmbyllëse te Oborri krijon hapësirë për biseda, lidhje të reja dhe mundësi konkrete bashkëpunimi.', agenda: ['Darkë bufe', 'Njohje dhe diskutime', 'Muzikë dhe komunitet'], image: '/assets/inst_global.png', location: 'Oborri', query: 'Oborri+Tirana' },
 ];
 ---
-<BaseLayout title={`${conference.name} · ${conference.city}`}>
+<BaseLayout title={`IB ${conference.name} · ${conference.city}`} description={`${conference.description} ${conference.city}, ${conference.dates}.`}>
   <Header />
   <main>
     <Hero />
