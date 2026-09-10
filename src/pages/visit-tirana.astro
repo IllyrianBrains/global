@@ -1,0 +1,249 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/visit-tirana.css';
+
+const essentials = [
+  { number: '01', title: 'Nga aeroporti', text: 'Aeroporti “Nënë Tereza” ndodhet rreth 17 km nga Tirana. Qendra arrihet me autobus ose taksi; koha e udhëtimit varet nga trafiku.' },
+  { number: '02', title: 'Transporti në qytet', text: 'Qendra eksplorohet lehtë në këmbë. Për distanca më të gjata përdorni autobusët urbanë ose taksi të licencuara.' },
+  { number: '03', title: 'Monedha dhe pagesat', text: 'Monedha është leku shqiptar (ALL). Kartat pranohen në shumë vende, por mbani edhe pak cash për dyqane e lokale të vogla.' },
+  { number: '04', title: 'Moti në shtator', text: 'Shtatori zakonisht është i ngrohtë dhe i këndshëm. Merrni këpucë të rehatshme, një xhaketë të lehtë dhe një çadër të vogël.' },
+];
+
+const stayAreas = [
+  { title: 'Qendra', text: 'Pranë Sheshit Skënderbej, muzeve dhe pjesës më të madhe të atraksioneve. Zgjedhje praktike për vizitorët e parë.' },
+  { title: 'Blloku', text: 'I përshtatshëm nëse doni kafene, restorante dhe atmosferë të gjallë në mbrëmje.' },
+  { title: 'Pazari i Ri', text: 'Zonë karakteristike me treg, ushqim lokal dhe qasje të lehtë në këmbë drejt qendrës.' },
+  { title: 'Pranë DUA', text: 'Zgjedhja më e përshtatshme për të qenë afër aktiviteteve kryesore të IB Global.' },
+];
+
+const citySecrets = [
+  { title: 'Ura e Tabakëve', label: 'Një urë që humbi lumin', text: 'Kjo urë këmbësorësh prej guri daton nga shekulli XVIII. Dikur ishte pjesë e rrugës nga malësitë lindore dhe mbi të kalonin bagëti e prodhime drejt qytetit. Përroi u devijua në vitet 1930, por ura mbeti.', image: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Tanners%27%20Bridge%2C%20Tirana%2C%20Albania%2002.jpg?width=1000', file: 'https://commons.wikimedia.org/wiki/File:Tanners%27_Bridge,_Tirana,_Albania_02.jpg', credit: 'Pasztilla · CC BY-SA 4.0', map: 'Ura e Tabakeve Tirana' },
+  { title: 'Mozaiku i Tiranës', label: 'Gjurmë romake mes lagjeve', text: 'Një nga dëshmitë më të hershme arkeologjike të qytetit: mbetjet e një vile romake dhe mozaikët e saj, të fshehura mes ndërtesave të Tiranës moderne.', image: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Tirana%2C%20Albania%202017-04%20Tirana%20Mosaic%2003.jpg?width=1000', file: 'https://commons.wikimedia.org/wiki/File:Tirana,_Albania_2017-04_Tirana_Mosaic_03.jpg', credit: 'Pasztilla · CC BY-SA 4.0', map: 'Mozaiku i Tiranes' },
+  { title: 'Tyrbja e Kapllan Pashës', label: 'Tetë kolona nga viti 1817', text: 'Një monument i vogël osman në qendër, i ngritur mbi bazë tetëkëndore me tetë kolona guri. Që prej vitit 1948 mban statusin Monument Kulture.', map: 'Tyrbja e Kapllan Pashes Tirana' },
+  { title: 'Shtëpia me Gjethe', label: 'Historia pas fasadës', text: 'Një vilë pranë qendrës që u përdor për përgjime gjatë diktaturës komuniste. Sot është Muzeu Kombëtar i Përgjimeve dhe rrëfen historinë e survejimit shtetëror.', map: 'Shtepia me Gjethe Tirana' },
+];
+
+const tiranaGuide = {
+  visit: [
+    { title: 'Sheshi Skënderbej', note: 'Qendra · Histori', group: 'Sheshe & arkitekturë', lat: 41.3275, lng: 19.8187, image: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Skanderbeg%20square%2C%20Tiran%C3%AB%2C%20Albania%20.jpg?width=1000', file: 'https://commons.wikimedia.org/wiki/File:Skanderbeg_square,_Tiran%C3%AB,_Albania_.jpg', credit: 'Meriboo · CC BY-SA 3.0' },
+    { title: 'Sheshi Nënë Tereza', note: 'Hapësirë monumentale', group: 'Sheshe & arkitekturë', lat: 41.3172, lng: 19.8210, image: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Tirana%20Mother%20Teresa%20Square.jpg?width=1000', file: 'https://commons.wikimedia.org/wiki/File:Tirana_Mother_Teresa_Square.jpg', credit: 'Predrag Bubalo · CC BY-SA 2.0' },
+    { title: 'Bulevardi Dëshmorët e Kombit', note: 'Arkitekturë dhe shëtitje', group: 'Sheshe & arkitekturë', lat: 41.3209, lng: 19.8201, image: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Tirana%20Bulevardi%20D%C3%ABshmor%C3%ABt%20e%20Kombit.jpg?width=1000', file: 'https://commons.wikimedia.org/wiki/File:Tirana_Bulevardi_D%C3%ABshmor%C3%ABt_e_Kombit.jpg', credit: 'BBB2021 · CC BY-SA 4.0' },
+    { title: 'Xhamia e Et’hem Beut', note: 'Trashëgimi në qendër', group: 'Sheshe & arkitekturë', lat: 41.3279, lng: 19.8191, image: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Et%27hem%20Bey%20Mosque%20%26%20Clock%20tower.jpg?width=1000', file: 'https://commons.wikimedia.org/wiki/File:Et%27hem_Bey_Mosque_%26_Clock_tower.jpg', credit: 'Predrag Bubalo · CC BY-SA 2.0' },
+    { title: 'Pazari i Ri', note: 'Treg, kafene dhe atmosferë lokale', group: 'Sheshe & arkitekturë', lat: 41.3292, lng: 19.8218, image: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/The%20New%20Bazaar%20of%20Tirana.jpg?width=1000', file: 'https://commons.wikimedia.org/wiki/File:The_New_Bazaar_of_Tirana.jpg', credit: 'Besara1 · CC BY-SA 4.0' },
+    { title: 'Piramida e Tiranës', note: 'Arkitekturë · Teknologji', group: 'Sheshe & arkitekturë', lat: 41.3231, lng: 19.8214, image: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Pyramid%20of%20Tirana%20October%202023.jpg?width=1000', file: 'https://commons.wikimedia.org/wiki/File:Pyramid_of_Tirana_October_2023.jpg', credit: 'BBB2021 · CC BY-SA 4.0' },
+    { title: 'Shtëpia me Gjethe', note: 'Muze dhe histori', group: 'Muze & histori e afërt', lat: 41.3258, lng: 19.8165, image: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Muzeu%20Komb%C3%ABtar%20i%20P%C3%ABrgjimeve%2C%20%E2%80%9CSht%C3%ABpia%20me%20Gjethe%E2%80%9D.jpg?width=1000', file: 'https://commons.wikimedia.org/wiki/File:Muzeu_Komb%C3%ABtar_i_P%C3%ABrgjimeve,_%E2%80%9CSht%C3%ABpia_me_Gjethe%E2%80%9D.jpg', credit: 'Bes-ART · CC BY-SA 3.0' },
+    { title: 'Vila e Enver Hoxhës', note: 'Gjurmë të historisë së afërt', group: 'Muze & histori e afërt', lat: 41.3201, lng: 19.8164, image: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Former%20Enver%20Hoxha%20House.jpg?width=1000', file: 'https://commons.wikimedia.org/wiki/File:Former_Enver_Hoxha_House.jpg', credit: 'Kleidieski · CC0' },
+    { title: 'Bunk’Art 1', note: 'Muze dhe histori komuniste', group: 'Muze & histori e afërt', lat: 41.3503, lng: 19.8602, farAway: true, image: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Bunk%27Art%201%2C%20Tirana%2C%20Albania%20%2849769361472%29.jpg?width=1000', file: 'https://commons.wikimedia.org/wiki/File:Bunk%27Art_1,_Tirana,_Albania_(49769361472).jpg', credit: 'Andrew Milligan sumo · CC BY 2.0' },
+    { title: 'Mali i Dajtit', note: 'Natyrë · Gjysmë ditë', group: 'Natyrë & pamje nga lart', lat: 41.3653, lng: 19.9256, farAway: true, image: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Tirana%20from%20Dajt.jpg?width=1000', file: 'https://commons.wikimedia.org/wiki/File:Tirana_from_Dajt.jpg', credit: 'Tobias Michaelsen · CC BY 2.0' },
+    { title: 'Parku i Madh', note: 'Ecje · Qetësi', group: 'Natyrë & pamje nga lart', lat: 41.3108, lng: 19.8175, image: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Mapillary%20Blloku%20Tirana%20by%20denisju%20osm%20-%202025-03-22%2006H34M56S288%20%28977443651210208%20of%20nZcf2CRPTuK59wxDXOb0tN%29.jpg?width=1000', file: 'https://commons.wikimedia.org/wiki/File:Mapillary_Blloku_Tirana_by_denisju_osm_-_2025-03-22_06H34M56S288_(977443651210208_of_nZcf2CRPTuK59wxDXOb0tN).jpg', credit: 'denisju_osm · CC BY-SA 4.0' },
+  ],
+  eat: [
+    { title: 'Oda', note: 'Kuzhinë tradicionale pranë Pazarit të Ri', group: 'Kuzhinë tradicionale shqiptare', lat: 41.3300, lng: 19.8235, image: 'https://www.odagardenrestaurant.com/images/restaurant-outdoor.jpg' },
+    { title: 'Ceren Ismet Shehu te Kalaja', note: 'Kuzhinë tradicionale', group: 'Kuzhinë tradicionale shqiptare', lat: 41.3248, lng: 19.8222 },
+    { title: 'Mullixhiu', note: 'Kuzhinë shqiptare me qasje moderne', group: 'Kuzhinë tradicionale shqiptare', lat: 41.3097, lng: 19.8147, image: 'https://i0.wp.com/www.mullixhiu.al/wp-content/uploads/2019/12/Mullixhiu-Main-table.jpg' },
+    { title: 'Fish Shop', note: 'Peshk dhe atmosferë e thjeshtë', group: 'Kuzhinë tradicionale shqiptare', lat: 41.3216, lng: 19.8114, image: 'https://www.fishop.al/images/fishop-tirana-img.jpg' },
+    { title: 'Greek Souvlaki te 9-katëshet', note: 'Street food', group: 'Kuzhinë tradicionale shqiptare', lat: 41.3278, lng: 19.8168 },
+    { title: 'Pireu', note: 'Peshk dhe fine dining', group: 'Kuzhinë ndërkombëtare & fine dining', lat: 41.3202, lng: 19.8095 },
+    { title: 'Artigiano Vila', note: 'Kuzhinë italiane', group: 'Kuzhinë ndërkombëtare & fine dining', lat: 41.3208, lng: 19.8161, image: 'https://artigiano.al/wp-content/uploads/2025/11/artigiano-vila-outside-scaled.webp' },
+    { title: 'Salt', note: 'Kuzhinë fusion dhe bar', group: 'Kuzhinë ndërkombëtare & fine dining', lat: 41.3215, lng: 19.8168, image: 'https://salt.al/wp-content/uploads/2023/07/XHB7165-1-1.webp' },
+    { title: 'The Home', note: 'Darkë në një ambient të këndshëm', group: 'Kuzhinë ndërkombëtare & fine dining', lat: 41.3188, lng: 19.8152 },
+    { title: 'Pizza Arte', note: 'Pica', group: 'Kuzhinë ndërkombëtare & fine dining', lat: 41.3198, lng: 19.8133 },
+    { title: 'Botanica', note: 'Kafe dhe aperitiv në qendër', group: 'Kafene, bare & jetë nate', lat: 41.3272, lng: 19.8178 },
+    { title: 'Të Du Ktu', note: 'Brunch dhe aperitiv', group: 'Kafene, bare & jetë nate', lat: 41.3190, lng: 19.8145 },
+    { title: 'Lift Steak & Rooftop Bar', note: 'Restorant dhe rooftop bar', group: 'Kafene, bare & jetë nate', lat: 41.3162, lng: 19.8047 },
+    { title: 'Rruga Mustafa Matohiti', note: 'Bare dhe jetë nate', group: 'Kafene, bare & jetë nate', lat: 41.3190, lng: 19.8162 },
+  ],
+};
+
+const mappedGuide = [...tiranaGuide.visit, ...tiranaGuide.eat].map((place) => ({
+  ...place,
+  category: tiranaGuide.visit.includes(place) ? 'Për të vizituar' : 'Për të ngrënë e për të dalë',
+  categoryKey: tiranaGuide.visit.includes(place) ? 'visit' : 'eat',
+}));
+
+const guideGroups = [...new Set(mappedGuide.map((place) => place.group))].map((group) => ({
+  group,
+  places: mappedGuide.filter((place) => place.group === group),
+}));
+
+const faqs = [
+  { question: 'Një fundjavë në zemër të Shqipërisë', answer: 'Tirana u shpall kryeqytet në vitin 1920. Sot është qendra politike, kulturore dhe shoqërore e vendit—një përzierje e arkitekturës historike, hapësirave të reja publike, jetës së kafeneve dhe natyrës që nis në malin e Dajtit. Nga Sheshi Skënderbej te Pazari i Ri, Blloku dhe Liqeni Artificial, qyteti ofron shumë për të parë pa pasur nevojë për një plan të ndërlikuar.' },
+  { question: 'Si shkoj nga aeroporti në qendër?', answer: 'Aeroporti “Nënë Tereza” ndodhet rreth 17 km nga Tirana. Mund të udhëtoni me autobusin e aeroportit ose me taksi të licencuar. Llogaritni kohë shtesë gjatë orëve me trafik.' },
+  { question: 'A mund të lëviz në këmbë?', answer: 'Po. Sheshi Skënderbej, Pazari i Ri, Blloku, Piramida dhe shumë nga pikat kryesore arrihen lehtë në këmbë. Për Dajtin ose zona më të largëta nevojitet transport.' },
+  { question: 'A pranohen kartat?', answer: 'Kartat pranohen në shumicën e hoteleve, restoranteve dhe dyqaneve të mëdha. Mbani edhe pak lekë cash për tregje, taksi ose lokale më të vogla.' },
+  { question: 'Çfarë duhet të vesh në shtator?', answer: 'Ditët zakonisht janë të ngrohta, ndërsa mbrëmjet mund të jenë më të freskëta. Këpucët e rehatshme, një xhaketë e lehtë dhe një çadër e vogël janë zgjedhje praktike.' },
+  { question: 'A flitet anglisht?', answer: 'Anglishtja përdoret shpesh në hotele, restorante dhe hapësira turistike. Shqipja është gjuha zyrtare dhe një “faleminderit” vlerësohet gjithmonë.' },
+  { question: 'Si mund të kem internet në telefon?', answer: 'Mund të përdorni roaming-un e operatorit tuaj ose të blini një kartë SIM/eSIM lokale. Wi-Fi ofrohet gjerësisht në hotele, kafene dhe hapësirat e eventit.' },
+  { question: 'Cili është numri i emergjencës?', answer: 'Për emergjenca telefononi 112, numri i unifikuar për ndihmë të menjëhershme në Shqipëri.' },
+];
+
+---
+
+<BaseLayout title="Vizito Tiranën · IB Global 2026" description="Udhëzues i shkurtër për pjesëmarrësit e IB Global 2026 që vizitojnë Tiranën.">
+  <Header />
+  <main class="visit-page">
+    <section class="visit-hero">
+      <div class="container visit-hero-inner">
+        <div>
+          <p class="eyebrow">IB GLOBAL 2026 · UDHËZUESI I QYTETIT</p>
+          <h1>Mirë se vini<br />në Tiranë.</h1>
+        </div>
+        <div class="visit-hero-copy">
+          <p>Tirana është një qytet i ngrohtë, plot ngjyra dhe gjithmonë në lëvizje. Historia, kultura, kafenetë dhe energjia e re bashkohen në një qytet që zbulohet më mirë duke ecur.</p>
+          <div class="visit-meta"><span>18–20 shtator 2026</span><span>Tiranë, Shqipëri</span></div>
+        </div>
+      </div>
+      <nav class="container visit-guide-nav" aria-label="Seksionet e udhëzuesit">
+        <a href="#essentials"><span>01</span>Planifikoni</a>
+        <a href="#stay"><span>02</span>Qëndroni</a>
+        <a href="#explore"><span>03</span>Eksploroni</a>
+        <a href="#secrets"><span>04</span>City Secrets</a>
+        <a href="#itinerary"><span>05</span>Tri ditë</a>
+        <a href="#faq"><span>06</span>FAQ</a>
+      </nav>
+    </section>
+
+    <section class="section visit-essentials grid-surface" id="essentials">
+      <div class="container">
+        <header class="visit-section-heading"><p class="eyebrow">01 · Planifikoni vizitën</p><h2>Gjërat kryesore,<br />në një vend.</h2><p>Pak informacion praktik që do t’ju ndihmojë të orientoheni dhe të shijoni më shumë fundjavën.</p></header>
+        <div class="visit-essential-grid">
+          {essentials.map((item) => <article><span>{item.number}</span><h3>{item.title}</h3><p>{item.text}</p></article>)}
+        </div>
+      </div>
+    </section>
+
+    <section class="section visit-stay grid-surface" id="stay">
+      <div class="container">
+        <header class="visit-section-heading"><p class="eyebrow">02 · Rreth qëndrimit tuaj</p><h2>Ku të qëndroni.</h2><p>Tirana ka hotele, apartamente dhe bujtina për buxhete të ndryshme. Kërkoni një vend pranë qendrës ose hapësirave të eventit.</p></header>
+        <div class="visit-stay-grid">{stayAreas.map((area, index) => <article><span>{String(index + 1).padStart(2, '0')}</span><h3>{area.title}</h3><p>{area.text}</p></article>)}</div>
+        <div class="visit-event-details"><div><span>Kur</span><strong>18–20 shtator 2026</strong></div><div><span>Ku</span><strong>DUA & Oborri, Tiranë</strong></div><div><span>Programi</span><a href="/#program">Shiko të gjitha aktivitetet ↗</a></div></div>
+      </div>
+    </section>
+
+    <section class="section visit-places grid-surface" id="explore">
+      <div class="container">
+        <header class="visit-section-heading"><p class="eyebrow">03 · Vendet kryesore</p><h2>Eksploroni qytetin.</h2><p>Të gjitha këto vende mund të bëhen pjesë e një shëtitjeje të lirë para ose pas programit.</p></header>
+        <div class="visit-map-filters" aria-label="Filtro vendet në hartë">
+          <button class="is-active" type="button" data-filter="all" aria-pressed="true">Të gjitha</button>
+          <button type="button" data-filter="visit" aria-pressed="false">Për t’u vizituar</button>
+          <button type="button" data-filter="eat" aria-pressed="false">Ushqim & dalje</button>
+        </div>
+        <div id="tirana-places-map" class="visit-explore-map" aria-label="Hartë interaktive e vendeve për t’u vizituar në Tiranë"></div>
+        <div class="visit-map-slider-heading"><div><span>Tirana në hartë</span><h3>Zgjidhni një vend</h3></div><p>Klikoni një vend për ta gjetur menjëherë në hartë.</p></div>
+        {guideGroups.map(({ group, places: groupPlaces }) => (
+          <div class="visit-map-group" data-category={groupPlaces[0].categoryKey}>
+            <h4>{group}</h4>
+            <div class="visit-map-slider" aria-label={`Vendet: ${group}`}>
+              {groupPlaces.map((place) => <button type="button" data-category={place.categoryKey} data-lat={place.lat} data-lng={place.lng} data-title={place.title} data-image={place.image} data-credit={place.credit} data-far={place.farAway ? 'true' : undefined}>
+                {place.image
+                  ? <img src={place.image} alt={place.title} title={place.credit} loading="lazy" referrerpolicy="no-referrer" />
+                  : <span class="visit-card-placeholder" aria-hidden="true">
+                      {place.categoryKey === 'eat'
+                        ? <svg viewBox="0 0 24 24"><path d="M7 3v7a2 2 0 0 0 2 2v9M7 3v7M10 3v7M4 3v7"/><path d="M17 3c-1.7 0-3 2.2-3 5s1.3 5 3 5v9"/></svg>
+                        : <svg viewBox="0 0 24 24"><path d="M12 21s6-5.2 6-11a6 6 0 1 0-12 0c0 5.8 6 11 6 11Z"/><circle cx="12" cy="10" r="2"/></svg>}
+                    </span>}
+                <span><small>{place.category}</small><strong>{place.title}</strong><em>{place.note}</em></span>
+              </button>)}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="section city-secrets grid-surface" id="secrets">
+      <div class="container">
+        <header class="visit-section-heading"><p class="eyebrow">04 · City Secrets</p><h2>Tirana që fshihet<br />mes rrugëve.</h2><p>Katër vende të vogla me histori të mëdha—të lehta për t’u humbur nëse nuk dini ku të shikoni.</p></header>
+        <div class="city-secrets-grid">
+          {citySecrets.map((secret, index) => <article class:list={{ 'has-image': secret.image }}>
+            {secret.image && <a class="city-secret-image" href={secret.file} target="_blank" rel="noreferrer"><img src={secret.image} alt={secret.title} loading="lazy" referrerpolicy="no-referrer" /><small>{secret.credit}</small></a>}
+            <div class="city-secret-copy"><span>{String(index + 1).padStart(2, '0')} · {secret.label}</span><h3>{secret.title}</h3><p>{secret.text}</p><a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(secret.map)}`} target="_blank" rel="noreferrer">Gjeje në hartë ↗</a></div>
+          </article>)}
+        </div>
+      </div>
+    </section>
+
+    <section class="section visit-plan grid-surface" id="itinerary">
+      <div class="container">
+        <header class="visit-section-heading"><p class="eyebrow">05 · Tirana në tri ditë</p><h2>Një plan i thjeshtë<br />rreth eventit.</h2><p>Kombinoni programin e IB Global me pak histori, ushqim lokal, natyrë dhe kohë për të njohur qytetin.</p></header>
+        <div class="visit-days">
+          <article><span>Dita 01</span><h3>Mirëseardhja</h3><p>Niseni nga Sheshi Skënderbej, vizitoni Xhaminë e Et’hem Beut, Kullën e Sahatit dhe Bunk’Art 2. Vazhdoni nga Kalaja e Tiranës dhe Piramida, pastaj bashkohuni me mbrëmjen e mirëseardhjes.</p></article>
+          <article><span>Dita 02</span><h3>Qyteti dhe komuniteti</h3><p>Shëtisni në Pazarin e Ri ose përgjatë bulevardit para programit. Pas aktiviteteve të IB Global, vazhdoni mbrëmjen me komunitetin te Oborri.</p></article>
+          <article><span>Dita 03</span><h3>Punëtori dhe natyrë</h3><p>Pas sesioneve të së dielës, relaksohuni te Liqeni Artificial ose planifikoni një vizitë në malin e Dajtit për ta parë Tiranën nga lart.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section visit-faq grid-surface" id="faq">
+      <div class="container visit-faq-layout">
+        <header class="visit-section-heading"><p class="eyebrow">06 · Pyetje të shpeshta</p><h2>Para se të niseni.</h2><p>Përgjigje të shkurtra për gjërat praktike që është mirë t’i dini para udhëtimit.</p></header>
+        <div class="visit-faq-list">
+          {faqs.map((faq, index) => <details open={index === 0}><summary><span>{String(index + 1).padStart(2, '0')}</span><strong>{faq.question}</strong><i aria-hidden="true">+</i></summary><p>{faq.answer}</p></details>)}
+        </div>
+      </div>
+    </section>
+
+    <section class="visit-event-cta">
+      <div class="container"><div><p class="eyebrow">Gati për fundjavën?</p><h2>Shihemi në Tiranë.</h2></div><a href="/#program">Shiko programin <span>→</span></a></div>
+    </section>
+  </main>
+  <Footer />
+  <script is:inline src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script is:inline>
+    (() => {
+      const mapElement = document.getElementById('tirana-places-map');
+      if (!mapElement || typeof L === 'undefined') return;
+      const map = L.map(mapElement, { scrollWheelZoom: false, minZoom: 13 }).setView([41.3275, 19.8187], 14);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '&copy; OpenStreetMap contributors' }).addTo(map);
+      const bounds = [];
+      const markers = [];
+
+      function wireMarker(button, icon, { scrollToMap = false } = {}) {
+        const point = [Number(button.dataset.lat), Number(button.dataset.lng)];
+        const marker = L.marker(point, { icon }).addTo(map).bindTooltip(button.dataset.title, { direction: 'top', offset: [0, -14] });
+        if (button.dataset.image) {
+          marker.bindPopup(
+            `<div class="visit-map-popup"><img src="${button.dataset.image}" alt="${button.dataset.title}" loading="lazy" referrerpolicy="no-referrer" /><strong>${button.dataset.title}</strong>${button.dataset.credit ? `<small>${button.dataset.credit}</small>` : ''}</div>`,
+            { maxWidth: 220, className: 'visit-map-popup-wrap' }
+          );
+        }
+        button.addEventListener('click', () => {
+          map.flyTo(point, 16);
+          if (button.dataset.image) marker.openPopup(); else marker.openTooltip();
+          if (scrollToMap) mapElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+        if (!button.dataset.far) bounds.push(point);
+        markers.push({ marker, category: button.dataset.category });
+      }
+
+      document.querySelectorAll('.visit-map-slider button').forEach((button) => {
+        const icon = L.divIcon({ className: `visit-map-dot-wrap visit-map-dot-${button.dataset.category}`, html: '<span></span>', iconSize: [16, 16], iconAnchor: [8, 8] });
+        wireMarker(button, icon, { scrollToMap: true });
+      });
+
+      document.querySelectorAll('.visit-map-filters button').forEach((filterButton) => {
+        filterButton.addEventListener('click', () => {
+          const filter = filterButton.dataset.filter;
+          document.querySelectorAll('.visit-map-filters button').forEach((button) => {
+            const active = button === filterButton;
+            button.classList.toggle('is-active', active);
+            button.setAttribute('aria-pressed', String(active));
+          });
+          markers.forEach(({ marker, category }) => {
+            const visible = filter === 'all' || category === filter;
+            if (visible && !map.hasLayer(marker)) marker.addTo(map);
+            if (!visible && map.hasLayer(marker)) marker.removeFrom(map);
+          });
+          document.querySelectorAll('.visit-map-slider button').forEach((card) => {
+            card.hidden = filter !== 'all' && card.dataset.category !== filter;
+          });
+          document.querySelectorAll('.visit-map-group').forEach((groupEl) => {
+            groupEl.hidden = filter !== 'all' && groupEl.dataset.category !== filter;
+          });
+        });
+      });
+      map.fitBounds(bounds, { padding: [35, 35] });
+    })();
+  </script>
+</BaseLayout>
