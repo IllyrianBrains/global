@@ -4,13 +4,15 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
 const agenda = [
-  { time: '10:00', title: 'Hapja e takimit', text: 'Mirëseardhja dhe prezantimi i shkurtër i agjendës.' },
-  { time: '10:10', title: 'Përditësime nga Bordi dhe Ekipet', text: 'Pikat kryesore dhe zhvillimet e fundit.' },
-  { time: '10:35', title: 'Përditësime nga Qytetet dhe Nismat', text: 'Çdo qytet ka 5 minuta për një përditësim të shkurtër.' },
-  { time: '11:20', title: 'Propozimet', text: 'Prezantimi i propozimeve për Asamblenë.' },
-  { time: '11:40', title: 'Pushim', text: 'Kafe dhe biseda të lira.' },
-  { time: '11:55', title: 'Team-Building Exercises', text: 'Ushtrime të përbashkëta për t’u njohur dhe bashkëpunuar më mirë.' },
-  { time: '12:45', title: 'Diskutim i Hapur', text: 'Pyetje, ide dhe tema të ngritura nga organizatorët.' },
+  { time: '10:00–10:10', duration: '10 min', title: 'Hapja dhe objektivat e ditës', text: 'Mirëseardhje, prezantim i shkurtër i pjesëmarrësve, rregullat e sesionit.' },
+  { time: '10:10–10:50', duration: '40 min', title: 'Update i përgjithshëm i iniciativave të IB Network dhe vizioni për të ardhmen', text: 'Statusi i iniciativave në vazhdim, çfarë kemi arritur që nga Global II, dhe prezantimi i vizionit për vitin e ardhshëm. 25 min prezantim + 15 min pyetje.' },
+  { time: '10:50–11:15', duration: '25 min', title: 'Regjistrimi i OJF-së në Tiranë', text: 'Ku ndodhemi me procesin, hapat ligjorë të mbetur, çfarë ndryshon për rrjetin pas regjistrimit.' },
+  { time: '11:15–11:45', duration: '30 min', title: 'Website update', text: 'Demo i versionit të ri, çfarë i duhet nga çdo qytet (përmbajtje, kontakte, evente), afati i publikimit.' },
+  { time: '11:45–12:00', duration: '15 min', title: 'Pushim kafeje', text: '' },
+  { time: '12:00–12:20', duration: '20 min', title: 'IB Membership: abonimi vjetor dhe çfarë përfshin', text: 'Propozimi i modelit të anëtarësisë, çmimi vjetor, përfitimet për anëtarët dhe roli i qyteteve në rekrutim. Diskutim dhe vendim.' },
+  { time: '12:20–13:20', duration: '60 min', title: 'Round the table standup: feedback nga përfaqësuesit lokalë të IB', text: 'Çdo qytet në 5 minuta: statusi i komunitetit, çfarë funksionon, çfarë pengon, çfarë i kërkon rrjetit. Shënuesi mbledh temat e përbashkëta për pikën tjetër.' },
+  { time: '13:20–13:50', duration: '30 min', title: 'Standardizimi i operacioneve across local chapters', text: 'Local Community Playbook: ritmi mujor, emërtimi i grupeve, raportimi minimal, kodi i sjelljes. Çfarë adoptojmë njësoj kudo dhe çfarë mbetet lokale.' },
+  { time: '13:50–14:00', duration: '10 min', title: 'Përmbledhje, vendime dhe hapat e radhës', text: 'Lista e vendimeve, përgjegjësi dhe afati për çdo veprim. Kalim te dreka.' },
 ];
 
 const teamBuildingIdeas = [
@@ -44,7 +46,7 @@ const contributorColumns = [
     <section class="section organizers-agenda grid-surface">
       <div class="container organizer-layout">
         <header class="organizer-section-title"><p class="eyebrow">Agjenda</p><h2>Hapësirë për çdo qytet.</h2><p>Një rrjedhë e thjeshtë: dëgjojmë çështjet, punojmë mbi temat e përbashkëta dhe largohemi me hapa të qartë.</p></header>
-        <div class="internal-agenda">{agenda.map((item, index) => (<article><time>{item.time}</time><span>{String(index + 1).padStart(2, '0')}</span><div><h3>{item.title}</h3><p>{item.text}</p></div></article>))}</div>
+        <div class="internal-agenda">{agenda.map((item, index) => (<article><time>{item.time}<span class="agenda-duration">{item.duration}</span></time><span>{String(index + 1).padStart(2, '0')}</span><div><h3>{item.title}</h3>{item.text && <p>{item.text}</p>}</div></article>))}</div>
       </div>
     </section>
 

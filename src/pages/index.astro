@@ -8,7 +8,7 @@ import Footer from '../components/Footer.astro';
 import { conference, workshops } from '../data/conference';
 
 const saturdayEvents = [
-  { time: '10:00–14:00', title: 'Takimi i Asamblesë', text: 'Sesioni i brendshëm i punës ku organizatorët përcaktojnë prioritetet, përgjegjësitë dhe hapat e ardhshëm të rrjetit.', agenda: ['Përditësimi nga Bordi', 'Raportimi i qyteteve', 'Iniciativat dhe vendimet'], image: '/assets/inst_starting.png', restricted: true, href: '/organizers/' },
+  { time: '10:00–14:00', title: 'Takimi i Asamblesë', text: 'Sesioni i brendshëm i punës ku organizatorët përcaktojnë prioritetet, përgjegjësitë dhe hapat e ardhshëm të rrjetit.', agenda: ['Përditësimi nga Bordi', 'Raportimi i qyteteve', 'Iniciativat dhe vendimet'], image: '/assets/inst_starting.png', restricted: true, href: '/asambleja/' },
   { time: '18:00–19:30', title: 'Zhvillimi i rrjeteve profesionale', text: 'Një sesion publik në DUA me katër të ftuar që sjellin këndvështrimet e tyre mbi diasporën, komunikimin dhe zhvillimin teknologjik të rajonit.', guests: [
     { name: 'Endri Basha', role: 'Themelues i Illyrian Brains · Sociolog · Kontribues për IB Milano', topic: 'Tre ditë për të takuar njerëz nga Shqipëria, Kosova dhe diaspora, për të ndarë ide e histori dhe për të folur jo vetëm për atë që jemi, por për atë që mund të ndërtojmë së bashku. Unë dhe i gjithë ekipi i Illyrian Brains ju presim në Tiranë!', initials: 'EB', linkedin: 'https://www.linkedin.com/in/endribasha/' },
     { name: 'Leuarta Gjidoda', role: 'Presidente e ZASMŽ dhe Balkiva', topic: 'Diaspora shqiptare në Kroaci: si ruhet identiteti ndër breza, si ndërtohen komunitete larg vendit të origjinës dhe si kthehet diaspora në urë mes kulturës, profesionistëve dhe rajonit.', initials: 'LG', linkedin: 'https://www.linkedin.com/in/leuarta-gjidoda-35281335/' },
@@ -60,7 +60,7 @@ const workshopImages = [
           <div class="saturday-grid stacked-cards">
             {saturdayEvents.map((event) => (
               event.restricted ? (
-                <details class="session-item no-index organizers-event">
+                <details class="session-item no-index organizers-event" open>
                   <summary>
                     <span class="session-summary-text">
                       <span class="session-time">{event.time}</span>
@@ -132,7 +132,7 @@ const workshopImages = [
           <div class="session-list">
             {workshops.map((workshop, index) => (
               <>
-                <details class="session-item">
+                <details class="session-item" open>
                   <summary>
                     <span class="session-index">{String(index + 1).padStart(2, '0')}</span>
                     <span class="session-summary-text">
