@@ -195,6 +195,21 @@ body:has(.visit-page) .site-header::after { content: ''; position: absolute; lef
 .landing-page > section:nth-of-type(7) { z-index: 2; }
 .landing-page > section:nth-of-type(8) { z-index: 1; }
 .landing-page > section:last-of-type { margin-bottom: 0; }
+
+/* Same soft-curve stacking treatment on the organizers page. */
+.organizers-page > section {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: -24px;
+  border-radius: 0 0 30px 30px;
+}
+.organizers-page > section:nth-of-type(1) { z-index: 6; }
+.organizers-page > section:nth-of-type(2) { z-index: 5; }
+.organizers-page > section:nth-of-type(3) { z-index: 4; }
+.organizers-page > section:nth-of-type(4) { z-index: 3; }
+.organizers-page > section:nth-of-type(5) { z-index: 2; }
+.organizers-page > section:nth-of-type(6) { z-index: 1; }
+.organizers-page > section:last-of-type { margin-bottom: 0; }
 .alt { background: var(--soft); }
 .panel { border: 1px solid var(--line); border-radius: 18px; padding: 34px; background: var(--paper); box-shadow: 0 8px 28px rgba(0,0,0,.035); }
 .section-title { max-width: 700px; }

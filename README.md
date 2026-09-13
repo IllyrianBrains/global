@@ -25,14 +25,6 @@ The design is in:
 src/styles/global.css
 ```
 
-Replace the placeholder hero image at:
-
-```text
-public/assets/hero-placeholder.svg
-```
-
-and update `heroImage` in `src/data/conference.ts` if you use a different filename.
-
 ## Deploy with GitHub Pages
 
 1. Create a GitHub repository and push these files to the `main` branch.
@@ -54,4 +46,4 @@ Target: <github-user-or-org>.github.io
 
 ## Suggested next step
 
-Move speakers, news and sessions from `conference.ts` into Astro content collections / Markdown when the content starts growing.
+Move workshops and other repeating content from `conference.ts` into Astro content collections / Markdown when the content starts growing.
