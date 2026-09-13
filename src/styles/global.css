@@ -323,9 +323,9 @@ body:has(.visit-page) .site-header::after { content: ''; position: absolute; lef
 .event-card--guests { height: auto; }
 .event-card--guests .event-image, .event-card--guests .event-image img { height: auto; }
 .event-card--guests .event-card-copy { justify-content: flex-start; }
-.event-card ul.guest-list { display: grid; gap: 0; margin: 18px 0 0; padding: 10px 0 0; border-top: 1px solid rgba(79,128,100,.24); list-style: none; }
-.event-card ul.guest-list li.guest-item { display: flex; align-items: flex-start; justify-content: flex-start; gap: 12px; padding: 14px 0; font-size: 12px; }
-.event-card ul.guest-list li.guest-item + li.guest-item { border-top: 1px solid rgba(79,128,100,.15); }
+.guest-list { display: grid; gap: 0; margin: 18px 0 0; padding: 10px 0 0; border-top: 1px solid rgba(79,128,100,.24); list-style: none; }
+.guest-list li.guest-item { display: flex; align-items: flex-start; justify-content: flex-start; gap: 12px; padding: 14px 0; font-size: 12px; }
+.guest-list li.guest-item + li.guest-item { border-top: 1px solid rgba(79,128,100,.15); }
 .guest-avatar { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; color: #fff; background: #4f8064; font-size: 10px; font-weight: 800; flex: 0 0 auto; }
 .guest-copy { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
 .guest-name { display: flex; align-items: center; gap: 8px; color: var(--ink); font-size: 14px; }
@@ -360,7 +360,7 @@ body:has(.visit-page) .site-header::after { content: ''; position: absolute; lef
 .session-toggle svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
 .session-item[open] > summary { border-bottom: 1px solid rgba(79,128,100,.22); }
 .session-item[open] .session-toggle { background: #4f8064; color: #fff; transform: rotate(180deg); }
-.session-body { display: grid; grid-template-columns: minmax(0, 1fr) 220px; gap: 28px; padding: 6px 28px 28px 88px; }
+.session-body { display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, 36%); gap: 28px; padding: 6px 28px 28px 88px; }
 .session-body-copy p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.5; }
 .session-speaker { display: flex; align-items: center; gap: 10px; margin-top: 20px; padding-top: 16px; border-top: 1px solid rgba(79,128,100,.2); }
 .session-speaker-avatar { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; color: #fff; background: #4f8064; font-size: 10px; font-weight: 800; flex: 0 0 auto; }

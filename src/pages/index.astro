@@ -5,16 +5,11 @@ import Hero from '../components/Hero.astro';
 import CommunityMap from '../components/CommunityMap.astro';
 import SectionTitle from '../components/SectionTitle.astro';
 import Footer from '../components/Footer.astro';
-import { conference, workshops } from '../data/conference';
+import { conference, workshops, networkingGuests } from '../data/conference';
 
 const saturdayEvents = [
   { time: '10:00–14:00', title: 'Takimi i Asamblesë', text: 'Sesioni i brendshëm i punës ku organizatorët përcaktojnë prioritetet, përgjegjësitë dhe hapat e ardhshëm të rrjetit.', agenda: ['Përditësimi nga Bordi', 'Raportimi i qyteteve', 'Iniciativat dhe vendimet'], image: '/assets/inst_starting.png', restricted: true, href: '/asambleja/' },
-  { time: '18:00–19:30', title: 'Zhvillimi i rrjeteve profesionale', text: 'Një sesion publik në DUA me katër të ftuar që sjellin këndvështrimet e tyre mbi diasporën, komunikimin dhe zhvillimin teknologjik të rajonit.', guests: [
-    { name: 'Endri Basha', role: 'Themelues i Illyrian Brains · Sociolog · Kontribues për IB Milano', topic: 'Tre ditë për të takuar njerëz nga Shqipëria, Kosova dhe diaspora, për të ndarë ide e histori dhe për të folur jo vetëm për atë që jemi, por për atë që mund të ndërtojmë së bashku. Unë dhe i gjithë ekipi i Illyrian Brains ju presim në Tiranë!', initials: 'EB', linkedin: 'https://www.linkedin.com/in/endribasha/' },
-    { name: 'Leuarta Gjidoda', role: 'Presidente e ZASMŽ dhe Balkiva', topic: 'Diaspora shqiptare në Kroaci: si ruhet identiteti ndër breza, si ndërtohen komunitete larg vendit të origjinës dhe si kthehet diaspora në urë mes kulturës, profesionistëve dhe rajonit.', initials: 'LG', linkedin: 'https://www.linkedin.com/in/leuarta-gjidoda-35281335/' },
-    { name: 'Endri Ndoni', role: 'Managing Partner, AIMS International Albania & Kosovo · Themelues i Toastmasters Tirana', topic: 'Fuqia e komunikimit dhe e komunitetit: çfarë mund të mësojmë nga Toastmasters dhe një rrjet global me mbi 100 vjet histori për të ndërtuar rrjete më të forta e me ndikim.', initials: 'EN', linkedin: 'https://www.linkedin.com/in/endri-ndoni/' },
-    { name: 'Shpend Lila', role: 'Manager, Innovation Centre Kosovo', topic: 'Çfarë roli mund të luajmë ne — si profesionistë, rrjet dhe diasporë — për ta kthyer dijen, eksperiencën dhe lidhjet në kontribut konkret për zhvillimin teknologjik të rajonit.', initials: 'SL', linkedin: 'https://www.linkedin.com/in/shpendlila/' },
-  ], image: '/assets/inst_global_serious.png', location: 'Dua', query: 'Dua+Space+Tirana' },
+  { time: '18:00–19:30', title: 'Zhvillimi i rrjeteve profesionale', text: 'Një sesion publik në DUA me katër të ftuar që sjellin këndvështrimet e tyre mbi diasporën, komunikimin dhe zhvillimin teknologjik të rajonit.', guests: networkingGuests, image: '/assets/inst_global_serious.png', location: 'Dua', query: 'Dua+Space+Tirana' },
   { time: '19:30 e tutje', title: 'Networking dhe mbrëmje e lirë', text: 'Mbrëmja përmbyllëse te Oborri krijon hapësirë për biseda, lidhje të reja dhe mundësi konkrete bashkëpunimi.', agenda: ['Darkë bufe', 'Njohje dhe diskutime', 'Muzikë dhe komunitet'], image: '/assets/inst_global.png', location: 'Oborri', query: 'Oborri+Tirana' },
 ];
 
@@ -22,9 +17,8 @@ const workshopImages = [
   { src: '/assets/inst_workshop.png', alt: 'Pjesëmarrës gjatë një punëtorie të Illyrian Brains' },
   { src: '/assets/inst_meetup.png', alt: 'Profesionistë gjatë një takimi të Illyrian Brains' },
   { src: '/assets/inst_global_serious.png', alt: 'Folës gjatë një prezantimi të Illyrian Brains' },
-  { src: '/assets/inst_global.png', alt: 'Pjesëmarrës duke biseduar gjatë një takimi të Illyrian Brains' },
-  { src: '/assets/inst_starting.png', alt: 'Pjesëmarrës gjatë një sesioni pune të Illyrian Brains' },
 ];
+
 ---
 <BaseLayout title={`IB ${conference.name} · ${conference.city}`} description={`${conference.description} ${conference.city}, ${conference.dates}.`}>
   <Header />
@@ -145,7 +139,9 @@ const workshopImages = [
                   <div class="session-body">
                     <div class="session-body-copy">
                       <p>{workshop.text}</p>
-                      <ul class="mini-agenda">{workshop.agenda.map((item) => <li>{item}</li>)}</ul>
+                      {workshop.agenda.length > 0 && (
+                        <ul class="mini-agenda">{workshop.agenda.map((item) => <li>{item}</li>)}</ul>
+                      )}
                       {workshop.speaker && (
                         <div class="session-speaker">
                           <span class="session-speaker-avatar">{workshop.speaker.initials}</span>
@@ -154,6 +150,25 @@ const workshopImages = [
                             <a class="session-speaker-linkedin" href={workshop.speaker.linkedin} target="_blank" rel="noreferrer" aria-label={`${workshop.speaker.name} në LinkedIn`}>in</a>
                           )}
                         </div>
+                      )}
+                      {workshop.speakers && (
+                        <ul class="guest-list">
+                          {workshop.speakers.map((speaker) => (
+                            <li class="guest-item">
+                              <span class="guest-avatar" aria-hidden="true">{speaker.initials}</span>
+                              <span class="guest-copy">
+                                <span class="guest-name">
+                                  <strong>{speaker.name}</strong>
+                                  {speaker.linkedin && (
+                                    <a class="guest-linkedin" href={speaker.linkedin} target="_blank" rel="noreferrer" aria-label={`${speaker.name} në LinkedIn`}>in</a>
+                                  )}
+                                </span>
+                                <span class="guest-role">{speaker.role}</span>
+                                <span class="guest-topic">{speaker.topic}</span>
+                              </span>
+                            </li>
+                          ))}
+                        </ul>
                       )}
                     </div>
                     <div class="session-body-image"><img src={workshopImages[index % workshopImages.length].src} alt={workshopImages[index % workshopImages.length].alt} loading="lazy" /></div>
