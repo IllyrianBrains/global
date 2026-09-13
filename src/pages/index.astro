@@ -171,7 +171,11 @@ const workshopImages = [
                         </ul>
                       )}
                     </div>
-                    <div class="session-body-image"><img src={workshopImages[index % workshopImages.length].src} alt={workshopImages[index % workshopImages.length].alt} loading="lazy" /></div>
+                    <div class="session-body-image">
+                      {workshop.image
+                        ? <img src={workshop.image} alt={workshop.imageAlt} title={workshop.imageCredit} loading="lazy" referrerpolicy="no-referrer" />
+                        : <img src={workshopImages[index % workshopImages.length].src} alt={workshopImages[index % workshopImages.length].alt} loading="lazy" />}
+                    </div>
                   </div>
                 </details>
                 {workshop.break && index < workshops.length - 1 && (
