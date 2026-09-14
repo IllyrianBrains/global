@@ -32,6 +32,9 @@ img { display: block; max-width: 100%; }
 body:has(.visit-page) .site-header::after { content: ''; position: absolute; left: 0; right: 0; bottom: -5px; height: 6px; background-color: var(--night); background-image: var(--rombi-pattern); background-repeat: repeat-x; background-position: center; background-size: 24px 6px; pointer-events: none; }
 .brand { display: flex; align-items: center; gap: 12px; }
 .brand img { display: block; width: 178px; height: auto; }
+.brand-logo { display: block; }
+.brand-global { padding-left: 12px; border-left: 1px solid rgba(255,255,255,.3); color: #fff; font-size: 16px; font-weight: 800; line-height: 1; letter-spacing: 0; }
+.brand-logo:hover, .brand-global:hover { opacity: .78; }
 .nav { display: flex; align-items: center; gap: 27px; font-size: 13px; }
 .nav > a:not(.nav-cta) { position: relative; padding-block: 10px; transition: color .2s ease; }
 .nav > a:not(.nav-cta)::after { content: ''; position: absolute; left: 0; right: 100%; bottom: 4px; height: 1px; background: #c9aebd; transition: right .25s ease; }
