@@ -8,9 +8,9 @@ import Footer from '../components/Footer.astro';
 import { conference, workshops, networkingGuests } from '../data/conference';
 
 const saturdayEvents = [
-  { time: '10:00–14:00', title: 'Takimi i Asamblesë', text: 'Sesioni i brendshëm i punës ku organizatorët përcaktojnë prioritetet, përgjegjësitë dhe hapat e ardhshëm të rrjetit.', agenda: ['Përditësimi nga Bordi', 'Raportimi i qyteteve', 'Iniciativat dhe vendimet'], image: '/assets/inst_starting.png', restricted: true, href: '/asambleja/', location: 'Dua', query: 'Dua+Space+Tirana' },
-  { time: '18:00–19:30', title: 'Zhvillimi i rrjeteve profesionale', text: 'Një sesion publik në DUA me katër të ftuar që sjellin këndvështrimet e tyre mbi diasporën, komunikimin dhe zhvillimin teknologjik të rajonit.', guests: networkingGuests, image: '/assets/inst_global_serious.png', location: 'Dua', query: 'Dua+Space+Tirana', open: true },
-  { time: '19:30 e tutje', title: 'Networking dhe mbrëmje e lirë', text: 'Mbrëmja përmbyllëse te Oborri krijon hapësirë për biseda, lidhje të reja dhe mundësi konkrete bashkëpunimi.', agenda: ['Darkë bufe', 'Njohje dhe diskutime', 'Muzikë dhe komunitet'], guests: [{ name: 'Tomorr Kokona', role: 'Creative Leadership, Stage Talent Academy', topic: 'Një perspektivë ndryshe mbi lidershipin, zhvillimin personal dhe identitetin — këtë herë përmes teatrit. Me Tomorr Kokonën eksplorojmë prezencën dhe komunikimin si elemente kyçe të lidershipit, si dhe rolin e diasporës në ruajtjen e trashëgimisë kulturore, nga kujtesa në veprim.', initials: 'TK', linkedin: '' }], image: '/assets/inst_global.png', location: 'Oborri', query: 'Oborri+Tirana' },
+  { time: '10:00–14:00', title: 'Takimi i Asamblesë', text: 'Sesioni i brendshëm i punës ku organizatorët përcaktojnë prioritetet, përgjegjësitë dhe hapat e ardhshëm të rrjetit.', agenda: ['Përditësimi nga Bordi', 'Raportimi i qyteteve', 'Iniciativat dhe vendimet'], image: '/assets/inst_starting.png', restricted: true, href: '/asambleja/', location: 'Dua', url: 'https://maps.app.goo.gl/RzMeYVEV6bdBnJkX7' },
+  { time: '18:00–19:30', title: 'Zhvillimi i rrjeteve profesionale', text: 'Një sesion publik në DUA me katër të ftuar që sjellin këndvështrimet e tyre mbi diasporën, komunikimin dhe zhvillimin teknologjik të rajonit.', guests: networkingGuests, image: '/assets/inst_global_serious.png', location: 'Dua', url: 'https://maps.app.goo.gl/RzMeYVEV6bdBnJkX7', open: true },
+  { time: '19:30 e tutje', title: 'Networking dhe mbrëmje e lirë', text: 'Mbrëmja përmbyllëse te Oborri krijon hapësirë për biseda, lidhje të reja dhe mundësi konkrete bashkëpunimi.', agenda: ['Darkë bufe', 'Njohje dhe diskutime', 'Muzikë dhe komunitet'], guests: [{ name: 'Tomorr Kokona', role: 'Creative Leadership, Stage Talent Academy', topic: 'Një perspektivë ndryshe mbi lidershipin, zhvillimin personal dhe identitetin — këtë herë përmes teatrit. Me Tomorr Kokonën eksplorojmë prezencën dhe komunikimin si elemente kyçe të lidershipit, si dhe rolin e diasporës në ruajtjen e trashëgimisë kulturore, nga kujtesa në veprim.', initials: 'TK', linkedin: '' }], image: '/assets/inst_global.png', location: 'Oborri', url: 'https://maps.app.goo.gl/xRbjJWmU6WtXbd2f9' },
 ];
 
 const workshopImages = [
@@ -36,7 +36,7 @@ const workshopImages = [
               <span class="session-summary-text">
                 <span class="session-time">19:00–22:00</span>
                 <h3>HappyHour i përbashkët</h3>
-                <span class="session-tags"><small><a class="location-link" href="https://www.google.com/maps/search/?api=1&query=Rruga+E+Dibr%C3%ABs+Nr.65%2C+Tiran%C3%AB+1015%2C+Albania" target="_blank" rel="noreferrer" onclick="event.stopPropagation()"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6-5.2 6-11a6 6 0 1 0-12 0c0 5.8 6 11 6 11Z"/><circle cx="12" cy="10" r="2"/></svg>Coolab</a></small></span>
+                <span class="session-tags"><small><a class="location-link" href="https://maps.app.goo.gl/ALdvANTL6zMvFh81A" target="_blank" rel="noreferrer" onclick="event.stopPropagation()"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6-5.2 6-11a6 6 0 1 0-12 0c0 5.8 6 11 6 11Z"/><circle cx="12" cy="10" r="2"/></svg>Coolab</a></small></span>
               </span>
               <span class="session-toggle" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></span>
             </summary>
@@ -68,7 +68,7 @@ const workshopImages = [
                     <h3>{event.restricted ? <a href={event.href} onclick="event.stopPropagation()">{event.title} ↗</a> : event.title}</h3>
                     <span class="session-tags">
                       {event.location && (
-                        <small><a class="location-link" href={`https://www.google.com/maps/search/?api=1&query=${event.query}`} target="_blank" rel="noreferrer" onclick="event.stopPropagation()"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6-5.2 6-11a6 6 0 1 0-12 0c0 5.8 6 11 6 11Z"/><circle cx="12" cy="10" r="2"/></svg>{event.location}</a></small>
+                        <small><a class="location-link" href={event.url || `https://www.google.com/maps/search/?api=1&query=${event.query}`} target="_blank" rel="noreferrer" onclick="event.stopPropagation()"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6-5.2 6-11a6 6 0 1 0-12 0c0 5.8 6 11 6 11Z"/><circle cx="12" cy="10" r="2"/></svg>{event.location}</a></small>
                       )}
                       {event.restricted && <small class="restricted-label">Vetëm organizatorët</small>}
                     </span>
@@ -112,7 +112,7 @@ const workshopImages = [
     <section class="section day-section sunday-section" id="sunday">
       <div class="container day-content">
           <header class="day-heading">
-            <div class="day-heading-copy"><p class="day-date"><span>E diel</span>20 Shtator</p><h2>Punëtori dhe ligjërata</h2><p>Takime tematike në <a class="inline-location-link" href="https://www.google.com/maps/search/?api=1&query=Dua+Space+Tirana" target="_blank" rel="noreferrer">Dua</a>, me fokus te shkëmbimi i ekspertizës, diskutimi i sfidave dhe krijimi i bashkëpunimeve të reja.</p></div>
+            <div class="day-heading-copy"><p class="day-date"><span>E diel</span>20 Shtator</p><h2>Punëtori dhe ligjërata</h2><p>Takime tematike në <a class="inline-location-link" href="https://maps.app.goo.gl/RzMeYVEV6bdBnJkX7" target="_blank" rel="noreferrer">Dua</a>, me fokus te shkëmbimi i ekspertizës, diskutimi i sfidave dhe krijimi i bashkëpunimeve të reja.</p></div>
             <a class="organizer-callout proposal-callout" href="mailto:illyrianbrains@gmail.com?subject=Propozim%20p%C3%ABr%20pun%C3%ABtori%20ose%20ligj%C3%ABrat%C3%AB%20-%20IB%20Global%202026&body=P%C3%ABrsh%C3%ABndetje%2C%0A%0AD%C3%ABshiroj%20t%C3%AB%20propozoj%20nj%C3%AB%20pun%C3%ABtori%20ose%20ligj%C3%ABrat%C3%AB%20p%C3%ABr%20IB%20Global%202026.%0A%0ATitulli%3A%0AFormati%3A%0AP%C3%ABrshkrimi%20i%20shkurt%C3%ABr%3A%0AKoh%C3%ABzgjatja%3A%0AEmri%20dhe%20kontakti%3A%0A">
               <span>Ndani ekspertizën tuaj</span>
               <strong>Propozoni një sesion</strong>
@@ -128,7 +128,7 @@ const workshopImages = [
                     <span class="session-summary-text">
                       <span class="session-time">{workshop.time}</span>
                       <h3>{workshop.title}</h3>
-                      <span class="session-tags"><small><a class="location-link" href="https://www.google.com/maps/search/?api=1&query=Dua+Space+Tirana" target="_blank" rel="noreferrer" onclick="event.stopPropagation()"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6-5.2 6-11a6 6 0 1 0-12 0c0 5.8 6 11 6 11Z"/><circle cx="12" cy="10" r="2"/></svg>Dua</a></small><span class="session-tag">{workshop.type}</span><span class="session-tag session-tag-room">{workshop.room}</span></span>
+                      <span class="session-tags"><small><a class="location-link" href="https://maps.app.goo.gl/RzMeYVEV6bdBnJkX7" target="_blank" rel="noreferrer" onclick="event.stopPropagation()"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6-5.2 6-11a6 6 0 1 0-12 0c0 5.8 6 11 6 11Z"/><circle cx="12" cy="10" r="2"/></svg>Dua</a></small><span class="session-tag">{workshop.type}</span><span class="session-tag session-tag-room">{workshop.room}</span></span>
                     </span>
                     <span class="session-toggle" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></span>
                   </summary>
@@ -195,21 +195,21 @@ const workshopImages = [
             <strong>Coolab</strong>
             <p>Hapësira ku fillon fundjava e IB Global — takimet e para, prezantimet dhe njohja mes pjesëmarrësve.</p>
             <div class="venue-schedule"><span>E premte · 19:00–22:00</span></div>
-            <a class="venue-map-link" href="https://www.google.com/maps/search/?api=1&query=Rruga+E+Dibr%C3%ABs+Nr.65%2C+Tiran%C3%AB+1015%2C+Albania" target="_blank" rel="noreferrer">Hape në hartë <span>↗</span></a>
+            <a class="venue-map-link" href="https://maps.app.goo.gl/ALdvANTL6zMvFh81A" target="_blank" rel="noreferrer">Hape në hartë <span>↗</span></a>
           </article>
           <article class="venue-card">
             <svg class="venue-pin" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6-5.2 6-11a6 6 0 1 0-12 0c0 5.8 6 11 6 11Z"/><circle cx="12" cy="10" r="2"/></svg>
             <strong>DUA</strong>
             <p>Hapësira kryesore e IB Global për takimet, prezantimet dhe sesionet profesionale.</p>
             <div class="venue-schedule"><span>E shtunë · 10:00–14:00</span><span>E shtunë · 18:00–19:30</span><span>E diel · 10:00–13:30</span></div>
-            <a class="venue-map-link" href="https://www.google.com/maps/search/?api=1&query=Dua+Space+Tirana" target="_blank" rel="noreferrer">Hape në hartë <span>↗</span></a>
+            <a class="venue-map-link" href="https://maps.app.goo.gl/RzMeYVEV6bdBnJkX7" target="_blank" rel="noreferrer">Hape në hartë <span>↗</span></a>
           </article>
           <article class="venue-card">
             <svg class="venue-pin" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6-5.2 6-11a6 6 0 1 0-12 0c0 5.8 6 11 6 11Z"/><circle cx="12" cy="10" r="2"/></svg>
             <strong>Oborri</strong>
             <p>Ambienti përballë DUA ku komuniteti mblidhet për biseda më të lira, njohje dhe darkë.</p>
             <div class="venue-schedule"><span>E shtunë · 19:30 e tutje</span></div>
-            <a class="venue-map-link" href="https://www.google.com/maps/search/?api=1&query=Oborri+Tirana" target="_blank" rel="noreferrer">Hape në hartë <span>↗</span></a>
+            <a class="venue-map-link" href="https://maps.app.goo.gl/xRbjJWmU6WtXbd2f9" target="_blank" rel="noreferrer">Hape në hartë <span>↗</span></a>
           </article>
         </div>
       </div>
