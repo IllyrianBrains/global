@@ -8,8 +8,8 @@ import Footer from '../components/Footer.astro';
 import { conference, workshops, networkingGuests } from '../data/conference';
 
 const saturdayEvents = [
-  { time: '10:00–14:00', title: 'Takimi i Asamblesë', text: 'Sesioni i brendshëm i punës ku organizatorët përcaktojnë prioritetet, përgjegjësitë dhe hapat e ardhshëm të rrjetit.', agenda: ['Përditësimi nga Bordi', 'Raportimi i qyteteve', 'Iniciativat dhe vendimet'], image: '/assets/inst_starting.png', restricted: true, href: '/asambleja/' },
-  { time: '18:00–19:30', title: 'Zhvillimi i rrjeteve profesionale', text: 'Një sesion publik në DUA me katër të ftuar që sjellin këndvështrimet e tyre mbi diasporën, komunikimin dhe zhvillimin teknologjik të rajonit.', guests: networkingGuests, image: '/assets/inst_global_serious.png', location: 'Dua', query: 'Dua+Space+Tirana' },
+  { time: '10:00–14:00', title: 'Takimi i Asamblesë', text: 'Sesioni i brendshëm i punës ku organizatorët përcaktojnë prioritetet, përgjegjësitë dhe hapat e ardhshëm të rrjetit.', agenda: ['Përditësimi nga Bordi', 'Raportimi i qyteteve', 'Iniciativat dhe vendimet'], image: '/assets/inst_starting.png', restricted: true, href: '/asambleja/', location: 'Dua', query: 'Dua+Space+Tirana' },
+  { time: '18:00–19:30', title: 'Zhvillimi i rrjeteve profesionale', text: 'Një sesion publik në DUA me katër të ftuar që sjellin këndvështrimet e tyre mbi diasporën, komunikimin dhe zhvillimin teknologjik të rajonit.', guests: networkingGuests, image: '/assets/inst_global_serious.png', location: 'Dua', query: 'Dua+Space+Tirana', open: true },
   { time: '19:30 e tutje', title: 'Networking dhe mbrëmje e lirë', text: 'Mbrëmja përmbyllëse te Oborri krijon hapësirë për biseda, lidhje të reja dhe mundësi konkrete bashkëpunimi.', agenda: ['Darkë bufe', 'Njohje dhe diskutime', 'Muzikë dhe komunitet'], image: '/assets/inst_global.png', location: 'Oborri', query: 'Oborri+Tirana' },
 ];
 
@@ -30,19 +30,27 @@ const workshopImages = [
           <header class="day-heading">
             <div class="day-heading-copy"><p class="day-date"><span>E premte</span>18 Shtator</p><h2>Mbrëmja e mirëseardhjes</h2><p>Hapja joformale e IB Global, krijuar për takimet e para, prezantimet dhe njohjen mes pjesëmarrësve.</p></div>
           </header>
-          <article class="event-list-card">
-            <div class="event-list-copy">
-              <div class="card-meta"><span>19:00</span><small><a class="location-link" href="https://www.google.com/maps/search/?api=1&query=Rruga+E+Dibr%C3%ABs+Nr.65%2C+Tiran%C3%AB+1015%2C+Albania" target="_blank" rel="noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6-5.2 6-11a6 6 0 1 0-12 0c0 5.8 6 11 6 11Z"/><circle cx="12" cy="10" r="2"/></svg>Coolab</a></small></div>
-              <h3>HappyHour i përbashkët</h3>
-              <p>Një mjedis i hapur për t’u prezantuar, për të takuar anëtarët e rinj dhe për të nisur fundjavën me komunitetin.</p>
-              <ul class="mini-agenda"><li>Mirëseardhja</li><li>Prezantime të shkurtra</li><li>Biseda të lira</li></ul>
+          <div class="session-list">
+          <details class="session-item no-index" open>
+            <summary>
+              <span class="session-summary-text">
+                <span class="session-time">19:00–22:00</span>
+                <h3>HappyHour i përbashkët</h3>
+                <span class="session-tags"><small><a class="location-link" href="https://www.google.com/maps/search/?api=1&query=Rruga+E+Dibr%C3%ABs+Nr.65%2C+Tiran%C3%AB+1015%2C+Albania" target="_blank" rel="noreferrer" onclick="event.stopPropagation()"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6-5.2 6-11a6 6 0 1 0-12 0c0 5.8 6 11 6 11Z"/><circle cx="12" cy="10" r="2"/></svg>Coolab</a></small></span>
+              </span>
+              <span class="session-toggle" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></span>
+            </summary>
+            <div class="session-body">
+              <div class="session-body-copy">
+                <p>Një mjedis i hapur për t’u prezantuar, për të takuar anëtarët e rinj dhe për të nisur fundjavën me komunitetin.</p>
+                <ul class="mini-agenda"><li>Mirëseardhja</li><li>Prezantime të shkurtra</li><li>Biseda të lira</li></ul>
+              </div>
+              <div class="event-image">
+                <img src="/assets/inst_happyhour.png" alt="Pjesëtarë të komunitetit gjatë një mbrëmjeje të Illyrian Brains" loading="lazy" />
+              </div>
             </div>
-            <div class="event-image event-image-collage">
-              <img src="/assets/inst_happyhour.png" alt="Pjesëtarë të komunitetit gjatë një mbrëmjeje të Illyrian Brains" loading="lazy" />
-              <img src="/assets/inst_global.png" alt="Anëtarë të rrjetit duke biseduar gjatë një eventi" loading="lazy" />
-              <img src="/assets/inst_meetup.png" alt="Pjesëmarrës të Illyrian Brains të mbledhur së bashku" loading="lazy" />
-            </div>
-          </article>
+          </details>
+          </div>
       </div>
     </section>
 
@@ -51,36 +59,24 @@ const workshopImages = [
           <header class="day-heading">
             <div class="day-heading-copy"><p class="day-date"><span>E shtunë</span>19 Shtator</p><h2>Rrjeti, vizioni dhe bashkëpunimi</h2><p>Një ditë e strukturuar nga puna e Asamblesë te eventi kryesor dhe bisedat që vazhdojnë gjatë mbrëmjes.</p></div>
           </header>
-          <div class="saturday-grid stacked-cards">
+          <div class="session-list">
             {saturdayEvents.map((event) => (
-              event.restricted ? (
-                <details class="session-item no-index organizers-event" open>
-                  <summary>
-                    <span class="session-summary-text">
-                      <span class="session-time">{event.time}</span>
-                      <h3><a href={event.href} onclick="event.stopPropagation()">{event.title} ↗</a></h3>
-                      <span class="session-tags"><small class="restricted-label">Vetëm organizatorët</small></span>
-                    </span>
-                    <span class="session-toggle" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></span>
-                  </summary>
-                  <div class="session-body">
-                    <div class="session-body-copy">
-                      <p>{event.text}</p>
-                      {event.agenda && event.agenda.length > 0 && (
-                        <ul class="mini-agenda">{event.agenda.map((item) => <li>{item}</li>)}</ul>
+              <details class={`session-item no-index${event.restricted ? ' organizers-event' : ''}`} open={event.open}>
+                <summary>
+                  <span class="session-summary-text">
+                    <span class="session-time">{event.time}</span>
+                    <h3>{event.restricted ? <a href={event.href} onclick="event.stopPropagation()">{event.title} ↗</a> : event.title}</h3>
+                    <span class="session-tags">
+                      {event.location && (
+                        <small><a class="location-link" href={`https://www.google.com/maps/search/?api=1&query=${event.query}`} target="_blank" rel="noreferrer" onclick="event.stopPropagation()"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6-5.2 6-11a6 6 0 1 0-12 0c0 5.8 6 11 6 11Z"/><circle cx="12" cy="10" r="2"/></svg>{event.location}</a></small>
                       )}
-                    </div>
-                    <div class="session-body-image"><img src={event.image} alt={`Pamje nga ${event.title.toLowerCase()}`} loading="lazy" /></div>
-                  </div>
-                </details>
-              ) : (
-                <article class={`event-card${event.guests ? ' event-card--guests' : ''}`} tabindex="0">
-                  <div class="event-card-copy">
-                    <div class="card-meta">
-                      <span>{event.time}</span>
-                      {event.location ? <small><a class="location-link" href={`https://www.google.com/maps/search/?api=1&query=${event.query}`} target="_blank" rel="noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6-5.2 6-11a6 6 0 1 0-12 0c0 5.8 6 11 6 11Z"/><circle cx="12" cy="10" r="2"/></svg>{event.location}</a></small> : null}
-                    </div>
-                    <h3>{event.title}</h3>
+                      {event.restricted && <small class="restricted-label">Vetëm organizatorët</small>}
+                    </span>
+                  </span>
+                  <span class="session-toggle" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></span>
+                </summary>
+                <div class="session-body">
+                  <div class="session-body-copy">
                     <p>{event.text}</p>
                     {event.agenda && event.agenda.length > 0 && (
                       <ul class="mini-agenda">{event.agenda.map((item) => <li>{item}</li>)}</ul>
@@ -105,9 +101,9 @@ const workshopImages = [
                       </ul>
                     )}
                   </div>
-                  <div class="event-image"><img src={event.image} alt={`Pamje nga ${event.title.toLowerCase()}`} loading="lazy" /></div>
-                </article>
-              )
+                  <div class="session-body-image"><img src={event.image} alt={`Pamje nga ${event.title.toLowerCase()}`} loading="lazy" /></div>
+                </div>
+              </details>
             ))}
           </div>
       </div>
@@ -126,13 +122,13 @@ const workshopImages = [
           <div class="session-list">
             {workshops.map((workshop, index) => (
               <>
-                <details class="session-item" open>
+                <details class="session-item" open={workshop.open}>
                   <summary>
                     <span class="session-index">{String(index + 1).padStart(2, '0')}</span>
                     <span class="session-summary-text">
                       <span class="session-time">{workshop.time}</span>
                       <h3>{workshop.title}</h3>
-                      <span class="session-tags"><span class="session-tag">{workshop.type}</span><span class="session-tag session-tag-room">{workshop.room}</span></span>
+                      <span class="session-tags"><small><a class="location-link" href="https://www.google.com/maps/search/?api=1&query=Dua+Space+Tirana" target="_blank" rel="noreferrer" onclick="event.stopPropagation()"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6-5.2 6-11a6 6 0 1 0-12 0c0 5.8 6 11 6 11Z"/><circle cx="12" cy="10" r="2"/></svg>Dua</a></small><span class="session-tag">{workshop.type}</span><span class="session-tag session-tag-room">{workshop.room}</span></span>
                     </span>
                     <span class="session-toggle" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></span>
                   </summary>
@@ -175,6 +171,7 @@ const workshopImages = [
                       {workshop.image
                         ? <img src={workshop.image} alt={workshop.imageAlt} title={workshop.imageCredit} loading="lazy" referrerpolicy="no-referrer" />
                         : <img src={workshopImages[index % workshopImages.length].src} alt={workshopImages[index % workshopImages.length].alt} loading="lazy" />}
+                      {workshop.imageCredit && <small class="image-credit">{workshop.imageCredit}</small>}
                     </div>
                   </div>
                 </details>
@@ -197,7 +194,7 @@ const workshopImages = [
             <svg class="venue-pin" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6-5.2 6-11a6 6 0 1 0-12 0c0 5.8 6 11 6 11Z"/><circle cx="12" cy="10" r="2"/></svg>
             <strong>Coolab</strong>
             <p>Hapësira ku fillon fundjava e IB Global — takimet e para, prezantimet dhe njohja mes pjesëmarrësve.</p>
-            <div class="venue-schedule"><span>E premte · 19:00</span></div>
+            <div class="venue-schedule"><span>E premte · 19:00–22:00</span></div>
             <a class="venue-map-link" href="https://www.google.com/maps/search/?api=1&query=Rruga+E+Dibr%C3%ABs+Nr.65%2C+Tiran%C3%AB+1015%2C+Albania" target="_blank" rel="noreferrer">Hape në hartë <span>↗</span></a>
           </article>
           <article class="venue-card">
